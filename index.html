@@ -27,7 +27,7 @@ body{font-family:'Inter',sans-serif;background:#030d1a;color:#e2e8f0;overflow-x:
 }
 
 /* CURSOR SPOTLIGHT */
-.spotlight{
+.spotlight{pointer-events:none;position:fixed;inset:0;z-index:9999;}
   pointer-events:none;position:fixed;inset:0;z-index:9999;
   background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(0,201,167,0.055),transparent 50 %);
   transition:background .1s;
@@ -55,7 +55,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;ali
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-w{font-size:20px;font-weight:900;letter-spacing:-.5px;color:#fff}
 .logo-w span{color:var(--teal)}
-.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links{display:flex;gap:28px;list-style:none;margin-left:36px}
 .nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#fff}
 .nav-right{display:flex;align-items:center;gap:12px}
@@ -350,12 +350,12 @@ footer ul li a:hover{color:var(--teal)}
     <div class="ticker-item">🇨🇦 Built for <strong>Canadian real estate</strong> <span class="t-sep">·</span></div>
     <div class="ticker-item">PIPEDA Compliant <span class="t-sep">·</span> FINTRAC Ready <span class="t-sep">·</span> Bilingual <strong>EN / FR</strong> <span class="t-sep">·</span></div>
     <div class="ticker-item">Avery responds in <strong>under 60 seconds</strong> <span class="t-sep">·</span></div>
-    <div class="ticker-item">Your 24/7 AI workforce <span class="t-sep">·</span> <strong>more effective, less costly</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">Your 24/7 AI workforce <span class="t-sep">·</span> <strong>more effective, less costly &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <span class="t-sep">·</span></div>
     <div class="ticker-item"><strong>Never</strong> miss another lead <span class="t-sep">·</span></div>
     <div class="ticker-item">🇨🇦 Built for <strong>Canadian real estate</strong> <span class="t-sep">·</span></div>
     <div class="ticker-item">PIPEDA Compliant <span class="t-sep">·</span> FINTRAC Ready <span class="t-sep">·</span> Bilingual <strong>EN / FR</strong> <span class="t-sep">·</span></div>
     <div class="ticker-item">Avery responds in <strong>under 60 seconds</strong> <span class="t-sep">·</span></div>
-    <div class="ticker-item">Your 24/7 AI workforce <span class="t-sep">·</span> <strong>more effective, less costly</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">Your 24/7 AI workforce <span class="t-sep">·</span> <strong>more effective, less costly &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> <span class="t-sep">·</span></div>
   </div>
 </div>
 
@@ -750,8 +750,8 @@ footer ul li a:hover{color:var(--teal)}
 /* CURSOR SPOTLIGHT */
 const spotlight = document.getElementById('spotlight');
 document.addEventListener('mousemove', e => {
-  document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
-  document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+  spotlight.style.background =
+    `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(0,201,167,0.08), transparent 50 per cent)`;
 });
 
 /* SCROLL FADE-UP */
@@ -760,6 +760,20 @@ const obs = new IntersectionObserver(entries => {
 },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
+/* LANGUAGE TOGGLE */
+const langBtn = document.querySelector('.lang-btn');
+let lang = 'EN';
+langBtn.addEventListener('click', () => {
+  lang = lang === 'EN' ? 'FR' : 'EN';
+  langBtn.innerHTML = lang === 'EN'
+    ? '<span style="color:#00c9a7;font-weight:800">EN</span> · FR'
+    : 'EN · <span style="color:#00c9a7;font-weight:800">FR</span>';
+  // Swap visible text content (basic toggle, full i18n goes here)
+  document.querySelectorAll('[data-en]').forEach(el => {
+    el.textContent = lang === 'EN' ? el.dataset.en : el.dataset.fr;
+  });
+});
+  
 /* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
