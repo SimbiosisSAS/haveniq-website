@@ -10,26 +10,28 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-:root{--teal:#00c9a7;--teal-d:#00a888;--purple:#7b61ff;--navy:#0f172a;--muted-l:#64748b;--brd-l:#e2e8f0}
+:root{--teal:#00c9a7;--teal-d:#00a888;--purple:#7b61ff;--navy:#0f172a;--muted-l:#64748b}
 .fu{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
 .fu.vis{opacity:1;transform:translateY(0)}
 #sp{pointer-events:none;position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999}
 #toast{position:fixed;bottom:28px;left:0;right:0;display:flex;justify-content:center;z-index:10000;pointer-events:none}
-#toast span{background:#0f172a;border:1px solid rgba(0,201,167,.3);border-radius:10px;padding:12px 22px;font-size:14px;font-weight:600;color:#fff;transform:translateY(60px);transition:all .3s ease;opacity:0;pointer-events:none;white-space:nowrap}
+#toast span{background:#0f172a;border:1px solid rgba(0,201,167,.3);border-radius:10px;padding:12px 22px;font-size:14px;font-weight:600;color:#fff;transform:translateY(60px);transition:all .3s ease;opacity:0;white-space:nowrap}
 #toast span.on{transform:translateY(0);opacity:1}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s}
-nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+/* NAV: always has dark bg so logo is always visible */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(3,13,26,.75);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.07);transition:background .3s}
+nav.solid{background:rgba(3,13,26,.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.1)}
 .logo{display:flex;align-items:center;gap:9px;text-decoration:none}
 .logo-w{font-size:19px;font-weight:900;color:#fff;letter-spacing:-.5px}
 .logo-w span{color:var(--teal)}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#fff}
 .nav-r{display:flex;align-items:center;gap:14px}
-.lang-toggle{display:flex;border:1px solid rgba(255,255,255,.14);border-radius:8px;overflow:hidden}
-.lo{padding:6px 13px;background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+/* Language toggle: clear and visible */
+.lang-toggle{display:flex;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;overflow:hidden}
+.lo{padding:7px 14px;background:none;border:none;color:rgba(255,255,255,.7);font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;letter-spacing:.3px}
+.lo:hover{color:#fff}
 .lo.on{background:var(--teal);color:#030d1a}
 .btn-demo{background:var(--teal);color:#030d1a;padding:10px 22px;border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;border:none;cursor:pointer;font-family:inherit}
 .btn-demo:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,201,167,.35)}
@@ -41,17 +43,15 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .ti strong{color:var(--teal);margin:0 4px}
 .ts{color:rgba(255,255,255,.15);margin:0 6px}
 
-/* ======================================
-   SECTION BACKGROUNDS, solid colours
-   set DIRECTLY on the element so they
-   ALWAYS render regardless of any CSS
-   gradient syntax issues
-   ====================================== */
+/* SECTION LABELS */
+.sec-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px;display:block}
+.lbl-light{color:var(--teal);opacity:.8}
+.lbl-dark{color:var(--teal-d)}
 
-/* HERO: DARK #1 */
+/* ── 1. HERO: DARK ─────────────────── */
 .hero{background:#030d1a;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 48px 100px;text-align:center;position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 75vw 15vh,rgba(0,201,167,.07),transparent 500px),radial-gradient(ellipse at 20vw 85vh,rgba(123,97,255,.06),transparent 400px)}
-.hero-dots{position:absolute;inset:0;pointer-events:none;opacity:.2;background-image:radial-gradient(rgba(0,201,167,.5) 1px,transparent 1px);background-size:30px 30px}
+.hero-dots{position:absolute;inset:0;pointer-events:none;opacity:.18;background-image:radial-gradient(rgba(0,201,167,.5) 1px,transparent 1px);background-size:30px 30px}
 .hero h1{font-size:clamp(48px,7.5vw,92px);font-weight:900;line-height:1.02;letter-spacing:-3px;max-width:860px;margin:0 auto 28px;position:relative;z-index:1;color:#fff}
 .hero h1 .gr{background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:var(--teal)}
 .hero-sub{font-size:clamp(16px,1.8vw,20px);color:rgba(226,232,240,.52);max-width:560px;margin:0 auto 44px;line-height:1.7;position:relative;z-index:1}
@@ -62,30 +62,27 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .btn-s:hover{background:rgba(255,255,255,.12)}
 .hero-trust{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.35);position:relative;z-index:1;flex-wrap:wrap;justify-content:center}
 
-/* PROBLEM: DARK #2, continues from hero */
-.prob-sec{background:#030d1a;padding:100px 48px;text-align:center;position:relative;border-top:1px solid rgba(255,255,255,.06)}
+/* ── 2. PROBLEM: WHITE ─────────────── */
+.prob-sec{background:#ffffff;color:#0f172a;padding:100px 48px;text-align:center;position:relative;overflow:hidden}
 .prob-sec::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50vw 50vh,rgba(0,201,167,.05),transparent 400px)}
-.sec-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px;display:block}
-.lbl-t{color:var(--teal);opacity:.8}
-.lbl-td{color:var(--teal-d)}
-.prob-num{font-size:clamp(90px,16vw,180px);font-weight:900;line-height:.9;letter-spacing:-8px;color:#ffffff;margin-bottom:4px;position:relative;z-index:1}
-.prob-unit{font-size:clamp(24px,3.5vw,42px);font-weight:700;color:var(--teal);letter-spacing:-1px;margin-bottom:24px;position:relative;z-index:1}
-.prob-sub{font-size:clamp(16px,1.8vw,21px);color:rgba(226,232,240,.52);max-width:620px;margin:0 auto;line-height:1.7;position:relative;z-index:1}
-.prob-sub em{color:#fff;font-style:normal;font-weight:700}
+.prob-num{font-size:clamp(90px,16vw,180px);font-weight:900;line-height:.9;letter-spacing:-8px;color:#0f172a;margin-bottom:4px;position:relative;z-index:1}
+.prob-unit{font-size:clamp(24px,3.5vw,42px);font-weight:700;color:var(--teal-d);letter-spacing:-1px;margin-bottom:24px;position:relative;z-index:1}
+.prob-sub{font-size:clamp(16px,1.8vw,21px);color:#64748b;max-width:620px;margin:0 auto;line-height:1.7;position:relative;z-index:1}
+.prob-sub em{color:#0f172a;font-style:normal;font-weight:700}
 
-/* AVERY: LIGHT #1, white */
-.avery-sec{background:#ffffff;color:#0f172a;padding:120px 48px}
+/* ── 3. AVERY: DARK ────────────────── */
+.avery-sec{background:#030d1a;color:#fff;padding:120px 48px}
 .avery-in{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.avery-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:18px;color:#0f172a}
-.avery-sec h2 span{color:var(--teal-d)}
-.avery-desc{font-size:17px;color:var(--muted-l);line-height:1.72;margin-bottom:36px}
+.avery-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:18px;color:#fff}
+.avery-sec h2 span{color:var(--teal)}
+.avery-desc{font-size:17px;color:rgba(226,232,240,.52);line-height:1.72;margin-bottom:36px}
 .feat-list{list-style:none;display:flex;flex-direction:column;gap:14px}
-.feat-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#334155;line-height:1.55}
+.feat-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:rgba(226,232,240,.82);line-height:1.55}
 .feat-list li::before{content:'✓';width:21px;height:21px;border-radius:50vw;background:var(--teal);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
 
-/* Phone on white background */
+/* Phone on DARK background */
 .phone-wrap{display:flex;justify-content:center}
-.phone{width:258px;background:#0a0a10;border-radius:48px;padding:13px;position:relative;box-shadow:inset 0 0 0 1.5px #2a2a35,0 0 0 9px #111118,0 0 0 10.5px #232330,0 28px 56px rgba(0,0,0,.18),0 4px 12px rgba(0,0,0,.1)}
+.phone{width:258px;background:#0a0a10;border-radius:48px;padding:13px;position:relative;box-shadow:inset 0 0 0 1.5px #2a2a35,0 0 0 9px #111118,0 0 0 10.5px #232330,0 60px 120px rgba(0,0,0,.75),0 0 80px rgba(0,201,167,.13)}
 .p-notch{position:absolute;top:19px;left:0;right:0;width:86px;height:23px;background:#0a0a10;border-radius:12px;z-index:10;margin:0 auto}
 .p-screen{border-radius:36px;overflow:hidden;background:#fff}
 .p-hdr{background:#0f172a;padding:34px 16px 14px;display:flex;align-items:center;gap:10px}
@@ -102,28 +99,28 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .typ{display:flex;gap:4px;padding:8px 12px;background:#fff;border-radius:4px 14px 14px 14px;width:fit-content;box-shadow:0 1px 2px rgba(0,0,0,.07)}
 .typ span{width:5px;height:5px;background:#94a3b8;border-radius:50vw;animation:ty 1.2s ease-in-out infinite}
 .typ span:nth-child(2){animation-delay:.2s}.typ span:nth-child(3){animation-delay:.4s}
-@keyframes ty{0 %,60 %,100 %{transform:translateY(0)}30 %{transform:translateY(-5px)}}
+@keyframes ty{0 per cent,60 per cent,100 per cent{transform:translateY(0)}30 per cent{transform:translateY(-5px)}}
 
-/* TEAM: LIGHT #2, gray */
-.team-sec{background:#f8fafc;padding:100px 48px}
+/* ── 4. TEAM: WHITE ────────────────── */
+.team-sec{background:#ffffff;padding:100px 48px}
 .team-in{max-width:1140px;margin:0 auto}
 .team-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:#0f172a;margin-bottom:14px}
-.team-sub{font-size:17px;color:var(--muted-l);max-width:540px;line-height:1.7;margin-bottom:56px}
+.team-sub{font-size:17px;color:#64748b;max-width:540px;line-height:1.7;margin-bottom:56px}
 .emp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.emp-card{background:#fff;border:1px solid #e2e8f0;border-radius:20px;padding:28px 24px;transition:all .25s;display:flex;flex-direction:column;gap:16px}
-.emp-card:hover{border-color:rgba(0,201,167,.32);box-shadow:0 8px 32px rgba(0,0,0,.09);transform:translateY(-3px)}
+.emp-card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:28px 24px;transition:all .25s;display:flex;flex-direction:column;gap:16px}
+.emp-card:hover{border-color:rgba(0,201,167,.32);box-shadow:0 8px 32px rgba(0,0,0,.09);transform:translateY(-3px);background:#fff}
 .emp-top{display:flex;align-items:center;gap:14px}
 .emp-av{width:56px;height:56px;border-radius:50vw;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;position:relative}
 .emp-online{position:absolute;bottom:1px;right:1px;width:14px;height:14px;background:#4ade80;border-radius:50vw;border:2px solid #fff}
 .emp-info h3{font-size:17px;font-weight:800;color:#0f172a;letter-spacing:-.3px}
 .emp-role{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--teal-d);margin-top:2px}
-.emp-bio{font-size:13.5px;color:var(--muted-l);line-height:1.65}
-.emp-live{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500;padding:8px 12px;background:#f8fafc;border-radius:8px;border:1px solid #f1f5f9}
+.emp-bio{font-size:13.5px;color:#64748b;line-height:1.65}
+.emp-live{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500;padding:8px 12px;background:#fff;border-radius:8px;border:1px solid #e2e8f0}
 .live-dot{width:6px;height:6px;background:#4ade80;border-radius:50vw;flex-shrink:0;animation:bl 2s ease-in-out infinite}
-@keyframes bl{0 %,100 %{opacity:1}50 %{opacity:.35}}
+@keyframes bl{0 per cent,100 per cent{opacity:1}50 per cent{opacity:.35}}
 .emp-tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
 
-/* TESTIMONIALS: DARK #3 */
+/* ── 5. TESTIMONIALS: DARK ─────────── */
 .test-sec{background:#060f1e;padding:100px 48px}
 .test-in{max-width:1140px;margin:0 auto}
 .test-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:#fff;margin-bottom:56px}
@@ -137,7 +134,7 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .test-n{font-size:13.5px;font-weight:700;color:#fff}
 .test-c{font-size:12px;color:rgba(255,255,255,.4)}
 
-/* RESULTS: LIGHT #3, white */
+/* ── 6. RESULTS: WHITE ─────────────── */
 .res-sec{background:#ffffff;padding:100px 48px}
 .res-in{max-width:1140px;margin:0 auto;text-align:center}
 .res-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:#0f172a;margin-bottom:56px}
@@ -146,9 +143,9 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .res-item:last-child{border-right:none}
 .res-item:hover{background:rgba(0,201,167,.03)}
 .res-big{font-size:clamp(52px,6.5vw,78px);font-weight:900;letter-spacing:-3px;line-height:1;color:var(--teal);background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
-.res-lbl{font-size:14px;color:var(--muted-l);line-height:1.55;font-weight:500}
+.res-lbl{font-size:14px;color:#64748b;line-height:1.55;font-weight:500}
 
-/* PRICING: DARK #4 */
+/* ── 7. PRICING: DARK ──────────────── */
 .price-sec{background:#030d1a;padding:100px 48px}
 .price-in{max-width:1140px;margin:0 auto}
 .price-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:#fff;margin-bottom:14px}
@@ -165,7 +162,6 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .pc.feat .pfi.no{opacity:.35;color:#94a3b8}
 .pc.feat .pbtn{background:#0f172a;color:#fff}
 .pc.feat .pbtn:hover{background:#1e293b}
-/* Badge: centered with margin:0 auto, no % transforms */
 .p-bdg{position:absolute;top:-13px;left:0;right:0;margin:0 auto;width:fit-content;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:800;padding:5px 16px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
 .pn{font-size:15px;font-weight:800;color:#fff;margin-bottom:6px}
 .pd{font-size:13.5px;color:rgba(255,255,255,.5);margin-bottom:22px;line-height:1.55}
@@ -179,24 +175,24 @@ nav.solid{background:rgba(3,13,26,.95);backdrop-filter:blur(16px);border-bottom:
 .pfi::before{content:'✓';color:var(--teal);font-weight:800;font-size:12px;flex-shrink:0}
 .pfi.no::before{content:'–';color:rgba(255,255,255,.25)}
 .pfi.no{opacity:.35}
-.pbtn{width:100 %;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;display:block}
+.pbtn{width:100 per cent;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;display:block}
 .pbtn.ghost{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12)}
 .pbtn.ghost:hover{background:rgba(255,255,255,.14)}
 
-/* CTA: LIGHT #4, white, breaks triple-dark at bottom */
+/* ── 8. CTA: WHITE ─────────────────── */
 .cta-sec{background:#ffffff;padding:100px 48px;text-align:center;position:relative}
 .cta-sec::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50vw 50vh,rgba(0,201,167,.06),transparent 500px)}
 .cta-sec h2{font-size:clamp(34px,4.5vw,58px);font-weight:900;letter-spacing:-2.5px;margin-bottom:18px;line-height:1.05;color:#0f172a;position:relative;z-index:1}
 .cta-sec h2 .gr{background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:var(--teal)}
-.cta-sec p{font-size:18px;color:var(--muted-l);max-width:500px;margin:0 auto 36px;line-height:1.65;position:relative;z-index:1}
+.cta-sec p{font-size:18px;color:#64748b;max-width:500px;margin:0 auto 36px;line-height:1.65;position:relative;z-index:1}
 .cta-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
 .cta-form input{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:10px;padding:14px 20px;font-size:15px;color:#0f172a;font-family:inherit;outline:none;width:280px;transition:all .2s}
 .cta-form input::placeholder{color:#94a3b8}
 .cta-form input:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(0,201,167,.1)}
 .cta-form button{background:var(--teal);color:#030d1a;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:800;border:none;cursor:pointer;transition:all .2s;white-space:nowrap;font-family:inherit;box-shadow:0 4px 16px rgba(0,201,167,.3)}
-.cta-form button:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,201,167,.4)}
+.cta-form button:hover{background:var(--teal-d);transform:translateY(-1px)}
 
-/* FOOTER: DARK #5, includes trust badges */
+/* ── 9. FOOTER: DARK ───────────────── */
 footer{background:#060f1e;padding:48px 48px 28px}
 .trust-row{max-width:1140px;margin:0 auto 48px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:40px}
 .ti2{color:rgba(255,255,255,.38);font-size:12.5px;font-weight:600;padding:8px 22px;transition:color .2s;display:flex;align-items:center;gap:7px}
@@ -227,7 +223,6 @@ footer ul li a:hover{color:var(--teal)}
 @media(max-width:600px){
   .res-grid{grid-template-columns:1fr}
   .hero-ctas,.cta-form{flex-direction:column;align-items:center}
-  .cta-form input{width:100 %;max-width:320px}
 }
 </style>
 </head>
@@ -238,7 +233,11 @@ footer ul li a:hover{color:var(--teal)}
 <!-- NAV -->
 <nav id="nav">
   <a href="/" class="logo">
-    <svg width="28" height="28" viewBox="0 0 34 34" fill="none"><rect width="34" height="34" rx="9" fill="#071224"/><path d="M17 6L5 16H8V28H15V21H19V28H26V16H29L17 6Z" fill="#00c9a7"/><circle cx="17" cy="6" r="2.5" fill="#fff"/></svg>
+    <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
+      <rect width="34" height="34" rx="9" fill="#071224"/>
+      <path d="M17 6L5 16H8V28H15V21H19V28H26V16H29L17 6Z" fill="#00c9a7"/>
+      <circle cx="17" cy="6" r="2.5" fill="#fff"/>
+    </svg>
     <span class="logo-w">Haven<span>IQ</span></span>
   </a>
   <ul class="nav-links">
@@ -269,7 +268,7 @@ footer ul li a:hover{color:var(--teal)}
   <span class="ti">Your 24/7 AI workforce <span class="ts">·</span> <strong>more effective, less costly</strong> <span class="ts">·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 </div></div>
 
-<!-- HERO: DARK -->
+<!-- 1. HERO: DARK -->
 <section class="hero">
   <div class="hero-dots"></div>
   <h1 class="fu" data-en="Your real estate website<br>just hired <span class='gr'>six people.</span>" data-fr="Votre site immobilier<br>vient d'embaucher <span class='gr'>six personnes.</span>">Your real estate website<br>just hired <span class="gr">six people.</span></h1>
@@ -283,19 +282,19 @@ footer ul li a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- PROBLEM: DARK -->
+<!-- 2. PROBLEM: WHITE -->
 <section class="prob-sec">
-  <span class="sec-label lbl-t fu">The problem</span>
+  <span class="sec-label lbl-dark fu">The problem</span>
   <div class="prob-num fu" style="transition-delay:.1s">15+</div>
   <div class="prob-unit fu" style="transition-delay:.15s">hours</div>
   <p class="prob-sub fu" style="transition-delay:.2s">That is how long the average real estate agent takes to respond to a new web lead. <em>By then, they have already signed with someone else.</em> HavenIQ makes sure you are always first.</p>
 </section>
 
-<!-- AVERY: WHITE -->
+<!-- 3. AVERY: DARK -->
 <section class="avery-sec">
   <div class="avery-in">
     <div class="fu">
-      <span class="sec-label lbl-td">Meet Avery</span>
+      <span class="sec-label lbl-light">Meet Avery</span>
       <h2>Your AI Sales agent.<br><span>Answers in 60 seconds.</span></h2>
       <p class="avery-desc">Avery captures every lead the moment it arrives, from your website, Realtor.ca, Rentals.ca or Zumper. She qualifies, nurtures and books viewings automatically, day or night, in English or French.</p>
       <ul class="feat-list">
@@ -321,7 +320,7 @@ footer ul li a:hover{color:var(--teal)}
             <div class="mu"><div class="bb">Yes! 2-bed around $2,400</div><div class="mt">Sat 11:03 p.m.</div></div>
             <div class="mb"><div class="bb">I have 2 units that fit. Sunday 2 p.m. or Monday 10 a.m.?</div><div class="mt">Sat 11:03 p.m.</div></div>
             <div class="mu"><div class="bb">Sunday 2 p.m. works!</div><div class="mt">Sat 11:04 p.m.</div></div>
-            <div class="mb"><div class="bb">Booked! I will send the address. See you Sunday at 2 p.m.!</div><div class="mt">Sat 11:04 p.m.</div></div>
+            <div class="mb"><div class="bb">Booked! I will send the address. See you Sunday!</div><div class="mt">Sat 11:04 p.m.</div></div>
             <div class="typ" id="typing"><span></span><span></span><span></span></div>
           </div>
         </div>
@@ -330,10 +329,10 @@ footer ul li a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- TEAM: LIGHT GRAY -->
+<!-- 4. TEAM: WHITE -->
 <section class="team-sec" id="agents">
   <div class="team-in">
-    <span class="sec-label lbl-td fu">Your AI employees</span>
+    <span class="sec-label lbl-dark fu">Your AI employees</span>
     <h2 class="fu">Six specialists.<br>One subscription.</h2>
     <p class="team-sub fu">Each agent has a defined role, a distinct skill set and is available 24 hours a day, 365 days a year.</p>
     <div class="emp-grid">
@@ -347,37 +346,37 @@ footer ul li a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- TESTIMONIALS: DARK -->
+<!-- 5. TESTIMONIALS: DARK -->
 <section class="test-sec">
   <div class="test-in">
-    <span class="sec-label lbl-t fu">What clients say</span>
+    <span class="sec-label lbl-light fu">What clients say</span>
     <h2 class="fu">Real results from<br>Canadian agencies.</h2>
     <div class="test-grid">
-      <div class="test-card fu"><div class="test-stars">★★★★★</div><p class="test-q">"Before HavenIQ, weekend leads waited until Monday. Last Saturday, Avery booked 3 viewings while I was at my daughter's soccer game. The ROI was obvious by day two."</p><div class="test-a"><div class="test-av" style="background:#1a3a2a">👩</div><div><div class="test-n">Sarah Chen</div><div class="test-c">Owner, Maple Property Group · Toronto</div></div></div></div>
-      <div class="test-card fu" style="transition-delay:.1s"><div class="test-stars">★★★★★</div><p class="test-q">"We went from responding to 60 % of our leads to 100 % of them. Avery is faster than any of us ever could be. Conversion went up 40 % in the first month."</p><div class="test-a"><div class="test-av" style="background:#1a2a3a">👨</div><div><div class="test-n">James Carvalho</div><div class="test-c">Broker, Pacific Realty Group · Vancouver</div></div></div></div>
-      <div class="test-card fu" style="transition-delay:.2s"><div class="test-stars">★★★★★</div><p class="test-q">"Harper recovered over $14,000 in late rent in our first month. I honestly do not know how we managed collections manually before this."</p><div class="test-a"><div class="test-av" style="background:#2a1a3a">👩</div><div><div class="test-n">Stéphanie Leblanc</div><div class="test-c">Director, Montréal Locatif · Montréal</div></div></div></div>
+      <div class="test-card fu"><div class="test-stars">★★★★★</div><p class="test-q">"Before HavenIQ, weekend leads waited until Monday. Last Saturday, Avery booked 3 viewings while I was at my daughter's soccer game."</p><div class="test-a"><div class="test-av" style="background:#1a3a2a">👩</div><div><div class="test-n">Sarah Chen</div><div class="test-c">Maple Property Group · Toronto</div></div></div></div>
+      <div class="test-card fu" style="transition-delay:.1s"><div class="test-stars">★★★★★</div><p class="test-q">"We went from responding to 60 per cent of our leads to 100 per cent of them. Avery is faster than any of us ever could be."</p><div class="test-a"><div class="test-av" style="background:#1a2a3a">👨</div><div><div class="test-n">James Carvalho</div><div class="test-c">Pacific Realty Group · Vancouver</div></div></div></div>
+      <div class="test-card fu" style="transition-delay:.2s"><div class="test-stars">★★★★★</div><p class="test-q">"Harper recovered over $14,000 in late rent in our first month. I do not know how we managed collections manually before."</p><div class="test-a"><div class="test-av" style="background:#2a1a3a">👩</div><div><div class="test-n">Stéphanie Leblanc</div><div class="test-c">Montréal Locatif · Montréal</div></div></div></div>
     </div>
   </div>
 </section>
 
-<!-- RESULTS: WHITE -->
+<!-- 6. RESULTS: WHITE -->
 <section class="res-sec" id="results">
   <div class="res-in">
-    <span class="sec-label lbl-td fu">By the numbers</span>
+    <span class="sec-label lbl-dark fu">By the numbers</span>
     <h2 class="fu">Results that speak<br>for themselves.</h2>
     <div class="res-grid fu" style="transition-delay:.1s">
       <div class="res-item"><div class="res-big">3×</div><div class="res-lbl">Increase in qualified showings booked within the first 30 days</div></div>
-      <div class="res-item"><div class="res-big">68 %</div><div class="res-lbl">Of tenant service tickets resolved without any human escalation</div></div>
+      <div class="res-item"><div class="res-big">68 per cent</div><div class="res-lbl">Of tenant service tickets resolved without any human escalation</div></div>
       <div class="res-item"><div class="res-big">&lt;60s</div><div class="res-lbl">Average time for Avery to respond to every new inbound lead</div></div>
       <div class="res-item"><div class="res-big">24/7</div><div class="res-lbl">Always-on coverage, no after-hours leads left unanswered</div></div>
     </div>
   </div>
 </section>
 
-<!-- PRICING: DARK -->
+<!-- 7. PRICING: DARK -->
 <section class="price-sec" id="pricing">
   <div class="price-in">
-    <span class="sec-label lbl-t fu">Pricing</span>
+    <span class="sec-label lbl-light fu">Pricing</span>
     <h2 class="fu">Simple, flat pricing.</h2>
     <p class="price-lsub fu">No per-lead fees. No surprises. Cancel anytime. Every plan starts with a 14-day free trial.</p>
     <div class="p-grid">
@@ -389,7 +388,7 @@ footer ul li a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- CTA: WHITE -->
+<!-- 8. CTA: WHITE -->
 <section class="cta-sec" id="contact">
   <h2 class="fu">Stop losing leads<br>at <span class="gr">11 p.m.</span></h2>
   <p class="fu" style="transition-delay:.1s">Start your free 14-day trial. Avery goes live on your website within 24 hours. No credit card required.</p>
@@ -399,7 +398,7 @@ footer ul li a:hover{color:var(--teal)}
   </form>
 </section>
 
-<!-- FOOTER: DARK (with trust badges) -->
+<!-- 9. FOOTER: DARK -->
 <footer>
   <div class="trust-row">
     <div class="ti2">🔒 PIPEDA Compliant</div><div class="tsep"></div>
@@ -424,7 +423,7 @@ footer ul li a:hover{color:var(--teal)}
 (function(){
   var sp=document.getElementById('sp');
   document.addEventListener('mousemove',function(e){
-    sp.style.background='radial-gradient(400px at '+e.clientX+'px '+e.clientY+'px,rgba(0,201,167,0.13) 0 %,transparent 100 %)';
+    sp.style.background='radial-gradient(400px at '+e.clientX+'px '+e.clientY+'px,rgba(0,201,167,0.13) 0 per cent,transparent 100 per cent)';
   });
   window.addEventListener('scroll',function(){
     document.getElementById('nav').classList.toggle('solid',window.scrollY>20);
@@ -440,13 +439,10 @@ footer ul li a:hover{color:var(--teal)}
       window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
     });
   });
-  /* TICKER via JS, no % in transforms */
   var trk=document.getElementById('tkTrack');
   if(trk){var pos=0;(function tick(){pos-=0.8;if(pos<=-trk.scrollWidth/2)pos=0;trk.style.transform='translateX('+pos+'px)';requestAnimationFrame(tick);})();}
-  /* CHAT */
   var typ=document.getElementById('typing'),cb=document.getElementById('cb');
-  if(typ&&cb){setTimeout(function(){typ.style.display='flex';setTimeout(function(){typ.style.display='none';var m=document.createElement('div');m.className='mb';m.innerHTML='<div class="bb">What is the best number to reach you? Sending the address now.</div><div class="mt">11:05 p.m.</div>';cb.insertBefore(m,typ);cb.scrollTop=cb.scrollHeight;},2200);},3500);}
-  /* LANGUAGE */
+  if(typ&&cb){setTimeout(function(){typ.style.display='flex';setTimeout(function(){typ.style.display='none';var m=document.createElement('div');m.className='mb';m.innerHTML='<div class="bb">What is the best number to reach you?</div><div class="mt">11:05 p.m.</div>';cb.insertBefore(m,typ);cb.scrollTop=cb.scrollHeight;},2200);},3500);}
   var lang='EN',tmsg=document.getElementById('toast-msg');
   window.setLang=function(l){
     if(l===lang)return;lang=l;
