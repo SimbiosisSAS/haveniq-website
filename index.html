@@ -7,7 +7,6 @@
 <meta property="og:title" content="HavenIQ, AI Employees for Canadian Real Estate"/>
 <meta property="og:url" content="https://haveniq.ca"/>
 <meta name="theme-color" content="#030d1a"/>
-<link rel="canonical" href="https://haveniq.ca"/>
 <title>HavenIQ, AI Employees for Canadian Real Estate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -16,266 +15,320 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:#030d1a;color:#e2e8f0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* TOKENS */
 :root{
-  --bg:#030d1a;--bg2:#071224;
-  --surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
-  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.14);
-  --teal:#00c9a7;--teal-d:#00a888;
-  --teal-glow:rgba(0,201,167,0.25);--purple:#7b61ff;--purple-glow:rgba(123,97,255,0.25);
-  --white:#ffffff;--text:#e2e8f0;--text-muted:rgba(226,232,240,0.5);--r:16px;
+  --bg:#030d1a;--bg2:#060f1e;--bg3:#071224;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --teal:#00c9a7;--teal-d:#00a888;--teal-glow:rgba(0,201,167,0.22);
+  --purple:#7b61ff;--purple-glow:rgba(123,97,255,0.2);
+  --text:#e2e8f0;--muted:rgba(226,232,240,0.48);--r:16px;
+  --mouse-x:50vw;--mouse-y:50vh;
 }
+
+/* CURSOR SPOTLIGHT */
+.spotlight{
+  pointer-events:none;position:fixed;inset:0;z-index:9999;
+  background:radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),rgba(0,201,167,0.055),transparent 50 %);
+  transition:background .1s;
+}
+
+/* NOISE TEXTURE */
+.noise{
+  pointer-events:none;position:fixed;inset:0;z-index:9998;opacity:.032;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100 %25' height='100 %25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px 256px;
+}
+
+/* UTILS */
 .container{max-width:1160px;margin:0 auto;padding:0 40px}
-.gradient-text{background:linear-gradient(135deg,#ffffff 0 %,#00c9a7 45 %,#7b61ff 100 %);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.fade-up{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.g-text{background:linear-gradient(135deg,#fff 0 %,#00c9a7 45 %,#7b61ff 100 %);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 
+/* @property for rotating border */
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 40px;height:64px;display:flex;align-items:center;background:rgba(3,13,26,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-inner{width:100 %;max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-word{font-size:20px;font-weight:900;letter-spacing:-.5px;color:#fff}
-.logo-word span{color:var(--teal)}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;background:rgba(3,13,26,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-in{width:100 %;max-width:1160px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-w{font-size:20px;font-weight:900;letter-spacing:-.5px;color:#fff}
+.logo-w span{color:var(--teal)}
 .nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{text-decoration:none;color:var(--text-muted);font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#fff}
-.nav-right{display:flex;align-items:center;gap:14px}
-.lang-btn{font-size:12px;font-weight:700;color:#fff;border:1px solid var(--border2);padding:5px 11px;border-radius:7px;cursor:pointer;background:none}
-.btn-nav{background:var(--teal);color:#030d1a;padding:10px 20px;border-radius:9px;font-size:14px;font-weight:800;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-block}
-.btn-nav:hover{background:var(--teal-d);transform:translateY(-1px)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-btn{font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--border2);padding:5px 11px;border-radius:7px;cursor:pointer;background:none;transition:all .2s}
+.lang-btn:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.btn-nav{position:relative;background:var(--teal);color:#030d1a;padding:10px 20px;border-radius:9px;font-size:14px;font-weight:800;text-decoration:none;border:none;cursor:pointer;overflow:hidden;display:inline-block;transition:transform .2s,box-shadow .2s}
+.btn-nav::after{content:'';position:absolute;top:0;left:-100 %;width:50 %;height:100 %;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);animation:shimmer 3s ease-in-out infinite}
+.btn-nav:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,201,167,.35)}
+@keyframes shimmer{0 %{left:-100 %}60 %,100 %{left:200 %}}
 
 /* TICKER */
-.ticker{background:rgba(0,201,167,0.05);border-bottom:1px solid rgba(0,201,167,0.12);overflow:hidden;padding:10px 0;margin-top:64px}
+.ticker{background:rgba(0,201,167,.04);border-bottom:1px solid rgba(0,201,167,.1);overflow:hidden;padding:10px 0;margin-top:64px}
 .ticker-track{display:flex;white-space:nowrap;animation:tick 32s linear infinite}
-.ticker-item{display:inline-flex;align-items:center;padding:0 32px;font-size:12px;font-weight:500;color:rgba(226,232,240,0.45)}
-.ticker-item strong{color:var(--teal);font-weight:700;margin:0 5px}
-.ticker-sep{color:rgba(255,255,255,0.15);margin:0 6px}
+.ticker-item{display:inline-flex;align-items:center;padding:0 32px;font-size:12px;font-weight:500;color:var(--muted)}
+.ticker-item strong{color:var(--teal);margin:0 5px}
+.t-sep{color:rgba(255,255,255,.12);margin:0 6px}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50 %)}}
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:80px 0}
-.orb{position:absolute;border-radius:50 %;filter:blur(100px);pointer-events:none;will-change:transform}
-.orb-1{width:700px;height:700px;background:radial-gradient(circle,rgba(0,201,167,.35),transparent 70 %);top:-200px;left:-150px;animation:float1 10s ease-in-out infinite}
-.orb-2{width:600px;height:600px;background:radial-gradient(circle,rgba(123,97,255,.3),transparent 70 %);top:50px;right:-100px;animation:float2 13s ease-in-out infinite}
-.orb-3{width:400px;height:400px;background:radial-gradient(circle,rgba(0,201,167,.18),transparent 70 %);bottom:-100px;left:40 %;animation:float3 9s ease-in-out infinite}
-@keyframes float1{0 %,100 %{transform:translate(0,0)}33 %{transform:translate(40px,-40px)}66 %{transform:translate(-25px,30px)}}
-@keyframes float2{0 %,100 %{transform:translate(0,0)}33 %{transform:translate(-35px,25px)}66 %{transform:translate(30px,-35px)}}
-@keyframes float3{0 %,100 %{transform:translate(0,0)}50 %{transform:translate(-30px,-25px)}}
-.grid-floor{position:absolute;bottom:0;left:0;right:0;height:55 %;background-image:linear-gradient(rgba(0,201,167,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,201,167,0.1) 1px,transparent 1px);background-size:60px 60px;transform:perspective(600px) rotateX(65deg);transform-origin:bottom center;mask-image:linear-gradient(to bottom,transparent 0 %,rgba(0,0,0,.3) 25 %,black 55 %,transparent 100 %);-webkit-mask-image:linear-gradient(to bottom,transparent 0 %,rgba(0,0,0,.3) 25 %,black 55 %,transparent 100 %)}
+#particles-canvas{position:absolute;inset:0;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50 %;pointer-events:none;will-change:transform}
+.orb1{width:800px;height:800px;background:radial-gradient(circle,rgba(0,201,167,.28) 0 %,transparent 65 %);filter:blur(80px);top:-300px;left:-200px;animation:fl1 12s ease-in-out infinite}
+.orb2{width:700px;height:700px;background:radial-gradient(circle,rgba(123,97,255,.25) 0 %,transparent 65 %);filter:blur(80px);top:0;right:-150px;animation:fl2 15s ease-in-out infinite}
+.orb3{width:500px;height:500px;background:radial-gradient(circle,rgba(0,201,167,.15) 0 %,transparent 65 %);filter:blur(60px);bottom:-100px;left:35 %;animation:fl3 10s ease-in-out infinite}
+@keyframes fl1{0 %,100 %{transform:translate(0,0) scale(1)}33 %{transform:translate(50px,-50px) scale(1.05)}66 %{transform:translate(-30px,40px) scale(.95)}}
+@keyframes fl2{0 %,100 %{transform:translate(0,0) scale(1)}33 %{transform:translate(-40px,30px) scale(1.04)}66 %{transform:translate(35px,-40px) scale(.96)}}
+@keyframes fl3{0 %,100 %{transform:translate(0,0)}50 %{transform:translate(-35px,-30px)}}
+.grid-floor{position:absolute;bottom:0;left:0;right:0;height:60 %;background-image:linear-gradient(rgba(0,201,167,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(0,201,167,.09) 1px,transparent 1px);background-size:56px 56px;transform:perspective(500px) rotateX(68deg);transform-origin:bottom center;mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,.4) 30 %,black 60 %,transparent 100 %);-webkit-mask-image:linear-gradient(to bottom,transparent,rgba(0,0,0,.4) 30 %,black 60 %,transparent 100 %);z-index:0}
 .hero-inner{position:relative;z-index:2;width:100 %}
 .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.25);color:var(--teal);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px}
-.hero-badge::before{content:'';width:7px;height:7px;background:var(--teal);border-radius:50 %;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--teal)}
-@keyframes pulse{0 %,100 %{opacity:1;transform:scale(1)}50 %{opacity:.4;transform:scale(1.6)}}
-.hero h1{font-size:56px;font-weight:900;line-height:1.04;letter-spacing:-3px;margin-bottom:24px}
-.hero-sub{font-size:18px;color:var(--text-muted);line-height:1.7;max-width:500px;margin-bottom:40px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,201,167,.08);border:1px solid rgba(0,201,167,.22);color:var(--teal);border-radius:100px;padding:7px 16px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:24px}
+.hero-badge::before{content:'';width:7px;height:7px;background:var(--teal);border-radius:50 %;animation:pulse 2s ease-in-out infinite;box-shadow:0 0 0 0 var(--teal)}
+@keyframes pulse{0 %,100 %{opacity:1;transform:scale(1);box-shadow:0 0 0 0 rgba(0,201,167,.5)}50 %{opacity:.5;transform:scale(1.5);box-shadow:0 0 0 6px rgba(0,201,167,0)}}
+.hero h1{font-size:58px;font-weight:900;line-height:1.04;letter-spacing:-3px;margin-bottom:24px;min-height:140px}
+.word{display:inline-block;opacity:0;transform:translateY(24px) rotateX(-20deg);transition:opacity .5s ease,transform .5s ease;margin-right:.25em}
+.word.show{opacity:1;transform:translateY(0) rotateX(0)}
+.hero-sub{font-size:17.5px;color:var(--muted);line-height:1.72;max-width:500px;margin-bottom:40px}
 .hero-sub strong{color:var(--text)}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-.btn-primary{position:relative;background:var(--teal);color:#030d1a;padding:15px 30px;border-radius:10px;font-size:15px;font-weight:800;text-decoration:none;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s;display:inline-block}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,201,167,.4)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{position:relative;background:var(--teal);color:#030d1a;padding:15px 30px;border-radius:10px;font-size:15px;font-weight:800;text-decoration:none;border:none;cursor:pointer;overflow:hidden;display:inline-block;transition:transform .2s,box-shadow .2s}
+.btn-primary::after{content:'';position:absolute;top:0;left:-100 %;width:50 %;height:100 %;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:shimmer 2.5s ease-in-out infinite 1s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(0,201,167,.4)}
 .btn-ghost{background:rgba(255,255,255,.05);color:var(--text);padding:15px 30px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;border:1px solid var(--border2);transition:all .2s;display:inline-block}
 .btn-ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.25)}
 
 /* CHAT CARD */
 .chat-wrap{perspective:1200px}
-.chat-float{transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);transition:transform .6s ease;filter:drop-shadow(0 40px 80px rgba(0,0,0,.6))}
-.chat-float:hover{transform:perspective(1200px) rotateY(-2deg) rotateX(1deg)}
+.chat-float{transform:perspective(1200px) rotateY(-8deg) rotateX(4deg);transition:transform .7s ease;filter:drop-shadow(0 48px 96px rgba(0,0,0,.7))}
+.chat-float:hover{transform:perspective(1200px) rotateY(-1deg) rotateX(0deg)}
 .chat-card{border-radius:24px;overflow:hidden;background:#0d1f38;border:1px solid var(--border2);max-width:360px;margin:0 auto}
-.chat-header{background:linear-gradient(135deg,#0a1628,#071224);padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border)}
-.chat-av{width:40px;height:40px;border-radius:50 %;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 0 20px rgba(0,201,167,.3)}
-.chat-info h4{color:#fff;font-size:15px;font-weight:700;margin-bottom:2px}
-.chat-info p{color:var(--text-muted);font-size:12px}
-.online-dot{width:8px;height:8px;background:#4ade80;border-radius:50 %;margin-left:auto;box-shadow:0 0 8px rgba(74,222,128,.6)}
+.chat-hdr{background:linear-gradient(135deg,#0a1628,#071224);padding:16px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--border)}
+.chat-av{width:40px;height:40px;border-radius:50 %;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 0 24px rgba(0,201,167,.35)}
+.chat-hdr h4{color:#fff;font-size:15px;font-weight:700;margin-bottom:2px}
+.chat-hdr p{color:var(--muted);font-size:12px}
+.online{width:8px;height:8px;background:#4ade80;border-radius:50 %;margin-left:auto;box-shadow:0 0 10px rgba(74,222,128,.7)}
 .chat-body{padding:18px;background:#071224;display:flex;flex-direction:column;gap:10px;min-height:190px}
 .msg{display:flex;flex-direction:column}
-.msg.bot .bubble{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:4px 18px 18px 18px;padding:11px 15px;font-size:13.5px;line-height:1.55;color:var(--text);max-width:88 %}
+.msg.bot .bubble{background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:4px 18px 18px 18px;padding:11px 15px;font-size:13.5px;line-height:1.55;color:var(--text);max-width:88 %}
 .msg.user{align-items:flex-end}
-.msg.user .bubble{background:linear-gradient(135deg,var(--teal),#00a888);color:#030d1a;border-radius:18px 4px 18px 18px;padding:11px 15px;font-size:13.5px;line-height:1.55;max-width:88 %;font-weight:600}
-.msg-time{font-size:10px;color:rgba(226,232,240,.25);margin-top:3px;padding:0 4px}
-.typing{display:flex;gap:5px;padding:12px 15px;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:4px 18px 18px 18px;width:fit-content}
-.typing span{width:7px;height:7px;background:rgba(255,255,255,.3);border-radius:50 %;animation:bounce 1.2s ease-in-out infinite}
+.msg.user .bubble{background:linear-gradient(135deg,var(--teal),var(--teal-d));color:#030d1a;border-radius:18px 4px 18px 18px;padding:11px 15px;font-size:13.5px;max-width:88 %;font-weight:600;line-height:1.55}
+.msg-t{font-size:10px;color:rgba(226,232,240,.25);margin-top:3px;padding:0 4px}
+.typing{display:flex;gap:5px;padding:12px 15px;background:rgba(255,255,255,.07);border:1px solid var(--border);border-radius:4px 18px 18px 18px;width:fit-content}
+.typing span{width:7px;height:7px;background:rgba(255,255,255,.3);border-radius:50 %;animation:bou 1.2s ease-in-out infinite}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
-@keyframes bounce{0 %,60 %,100 %{transform:translateY(0)}30 %{transform:translateY(-6px)}}
+@keyframes bou{0 %,60 %,100 %{transform:translateY(0)}30 %{transform:translateY(-7px)}}
 .channels{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:18px}
-.ch-pill{background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:11px;font-weight:600}
-.ch-pill.active{background:rgba(0,201,167,.12);color:var(--teal);border-color:rgba(0,201,167,.3)}
+.ch-pill{background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:11px;font-weight:600}
+.ch-pill.on{background:rgba(0,201,167,.1);color:var(--teal);border-color:rgba(0,201,167,.28)}
 
 /* STATS */
-.stats-section{padding:40px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.stats-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
-.stat-item{text-align:center;padding:12px 44px}
-.stat-item strong{display:block;font-size:40px;font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-item span{font-size:13px;color:var(--text-muted);font-weight:500}
+.stats-wrap{padding:48px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(0,201,167,.025) 0 %,transparent 100 %)}
+.stats-in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center;padding:12px 44px}
+.stat strong{display:block;font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:6px;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat span{font-size:13px;color:var(--muted);font-weight:500}
 .stat-sep{width:1px;height:44px;background:var(--border)}
 
 /* SECTIONS */
 .section{padding:100px 0}
-.section-label{font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;opacity:.8}
-.section-title{font-size:46px;font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:16px}
-.section-sub{font-size:17px;color:var(--text-muted);max-width:540px;line-height:1.7;margin-bottom:60px}
+.s-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;opacity:.75}
+.s-title{font-size:46px;font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:16px}
+.s-sub{font-size:17px;color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:60px}
 
-/* HOW IT WORKS */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden}
+/* HOW IT WORKS, connected steps */
+.how-wrap{position:relative}
+.how-connector{position:absolute;top:50 %;left:calc(33.33 % + 20px);width:calc(33.33 % - 40px);height:1px;background:linear-gradient(90deg,var(--teal),var(--purple));z-index:2;transform:translateY(-50 %)}
+.how-connector::after{content:'';position:absolute;right:-6px;top:50 %;transform:translateY(-50 %);width:6px;height:6px;border-radius:50 %;background:var(--purple)}
+.how-connector2{left:calc(66.66 % + 20px)}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:var(--r);overflow:hidden;position:relative;z-index:1}
 .how-card{background:var(--bg2);padding:40px 36px;position:relative;overflow:hidden;transition:background .3s}
-.how-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.06),transparent);opacity:0;transition:opacity .3s}
-.how-card:hover{background:#0a1830}
+.how-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .4s;background:radial-gradient(ellipse at top left,rgba(0,201,167,.08),transparent 60 %)}
+.how-card:hover{background:#091525}
 .how-card:hover::before{opacity:1}
-.how-num{font-size:11px;font-weight:800;color:var(--teal);letter-spacing:1px;margin-bottom:20px;opacity:.7}
-.how-icon{width:52px;height:52px;border-radius:14px;background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.2);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.how-num{display:inline-flex;width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--purple));align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#fff;margin-bottom:20px;box-shadow:0 0 20px rgba(0,201,167,.3)}
+.how-icon{font-size:28px;margin-bottom:16px}
 .how-card h3{font-size:19px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.3px}
-.how-card p{font-size:14.5px;color:var(--text-muted);line-height:1.65}
+.how-card p{font-size:14.5px;color:var(--muted);line-height:1.65}
 
 /* BENTO AGENTS */
 .bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.bento-card{position:relative;border-radius:20px;padding:32px 28px;overflow:hidden;transition:transform .2s,box-shadow .2s;border:1px solid var(--border);background:rgba(255,255,255,.03)}
-.bento-card::before{content:'';position:absolute;inset:0;border-radius:20px;opacity:0;transition:opacity .3s;background:linear-gradient(135deg,rgba(0,201,167,.07),rgba(123,97,255,.07))}
-.bento-card:hover::before{opacity:1}
-.bento-featured{grid-column:span 2;grid-row:span 2;background:linear-gradient(135deg,rgba(0,201,167,.07),rgba(123,97,255,.07));border-color:rgba(0,201,167,.2)}
-.bento-featured::after{content:'';position:absolute;inset:-1px;border-radius:21px;background:linear-gradient(135deg,rgba(0,201,167,.35),rgba(123,97,255,.35));z-index:-1}
-.agent-icon-wrap{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px}
-.icon-bg-teal{background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.2)}
-.icon-bg-blue{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)}
-.icon-bg-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
-.icon-bg-amber{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2)}
-.icon-bg-purple{background:rgba(123,97,255,.1);border:1px solid rgba(123,97,255,.2)}
-.icon-bg-slate{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2)}
-.bento-card h3{font-size:22px;font-weight:800;color:#fff;margin-bottom:5px;letter-spacing:-.4px}
-.bento-featured h3{font-size:28px}
-.agent-role-tag{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;opacity:.8}
-.bento-card p{font-size:14px;color:var(--text-muted);line-height:1.65}
-.bento-featured p{font-size:15px}
-.bento-tag{display:inline-block;margin-top:16px;background:rgba(0,201,167,.1);color:var(--teal);font-size:11px;font-weight:700;border-radius:8px;padding:5px 12px;border:1px solid rgba(0,201,167,.2)}
-.bento-tag.plain{background:rgba(255,255,255,.05);color:var(--text-muted);border-color:var(--border)}
-.metric-bubbles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
-.metric-bubble{background:rgba(0,0,0,.3);border:1px solid var(--border2);border-radius:12px;padding:14px 16px}
-.metric-bubble strong{display:block;font-size:28px;font-weight:900;letter-spacing:-1px;color:var(--teal);line-height:1}
-.metric-bubble span{font-size:11px;color:var(--text-muted);margin-top:3px;display:block}
 
-/* STAR AGENT */
-.star-section{background:linear-gradient(180deg,var(--bg) 0 %,var(--bg2) 100 %);position:relative;overflow:hidden}
-.star-section::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(0,201,167,.06),transparent 60 %);top:50 %;left:50 %;transform:translate(-50 %,-50 %);pointer-events:none}
+/* Rotating border for Avery */
+.avery-card{grid-column:span 2;grid-row:span 2;position:relative;border-radius:22px;padding:2px;background:conic-gradient(from var(--angle),var(--teal),var(--purple),#ff6b9d,var(--teal));animation:spin-border 5s linear infinite}
+@keyframes spin-border{to{--angle:360deg}}
+.avery-inner{background:linear-gradient(135deg,#071e30,#0a1628);border-radius:20px;padding:36px 32px;height:100 %;position:relative;overflow:hidden}
+.avery-inner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30 % 30 %,rgba(0,201,167,.1),transparent 60 %)}
+.avery-glow{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(0,201,167,.15),transparent);right:-80px;bottom:-80px;border-radius:50 %;filter:blur(40px)}
+
+.bento-card{border-radius:20px;padding:30px 26px;border:1px solid var(--border);background:rgba(255,255,255,.03);position:relative;overflow:hidden;transition:all .25s}
+.bento-card::after{content:'';position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at top right,rgba(0,201,167,.07),transparent 60 %);transition:opacity .3s;border-radius:20px}
+.bento-card:hover{border-color:rgba(0,201,167,.2);transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.35)}
+.bento-card:hover::after{opacity:1}
+.a-icon{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
+.i-teal{background:rgba(0,201,167,.1);border:1px solid rgba(0,201,167,.2)}
+.i-blue{background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2)}
+.i-green{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
+.i-amber{background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.2)}
+.i-purple{background:rgba(123,97,255,.1);border:1px solid rgba(123,97,255,.2)}
+.i-slate{background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.2)}
+.bento-card h3{font-size:21px;font-weight:800;color:#fff;margin-bottom:4px;letter-spacing:-.3px}
+.avery-inner h3{font-size:30px;margin-bottom:4px}
+.a-role{font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;opacity:.8}
+.bento-card p{font-size:14px;color:var(--muted);line-height:1.65}
+.avery-inner p{font-size:15.5px;line-height:1.7}
+.b-tag{display:inline-block;margin-top:16px;font-size:11px;font-weight:700;border-radius:8px;padding:5px 12px}
+.b-tag.accent{background:rgba(0,201,167,.1);color:var(--teal);border:1px solid rgba(0,201,167,.2)}
+.b-tag.plain{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid var(--border)}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.metric{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 16px;backdrop-filter:blur(8px)}
+.metric strong{display:block;font-size:26px;font-weight:900;letter-spacing:-1px;color:var(--teal);line-height:1}
+.metric span{font-size:11px;color:var(--muted);margin-top:3px;display:block}
+
+/* STAR AGENT SECTION */
+.star-bg{background:var(--bg2);position:relative;overflow:hidden}
+.star-bg::before{content:'';position:absolute;width:900px;height:900px;background:radial-gradient(circle,rgba(0,201,167,.05),transparent 55 %);top:50 %;left:50 %;transform:translate(-50 %,-50 %);pointer-events:none}
+.star-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.02) 0 %,transparent 40 %,rgba(123,97,255,.02) 100 %)}
 .star-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
-.star-label{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;opacity:.8}
-.star-section h2{font-size:44px;font-weight:900;letter-spacing:-1.8px;line-height:1.08;color:#fff;margin-bottom:20px}
-.star-section .lead{font-size:16px;color:var(--text-muted);line-height:1.72;margin-bottom:36px}
-.check-list{list-style:none;display:flex;flex-direction:column;gap:14px}
-.check-list li{display:flex;align-items:flex-start;gap:13px;font-size:15px;color:rgba(226,232,240,.8);line-height:1.55}
-.check-list li::before{content:'✓';width:22px;height:22px;border-radius:50 %;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.star-bg h2{font-size:44px;font-weight:900;letter-spacing:-1.8px;line-height:1.08;color:#fff;margin-bottom:20px}
+.star-lead{font-size:16px;color:var(--muted);line-height:1.72;margin-bottom:36px}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:13px}
+.check-list li{display:flex;align-items:flex-start;gap:13px;font-size:15px;color:rgba(226,232,240,.82);line-height:1.55}
+.check-list li::before{content:'✓';width:22px;height:22px;border-radius:50 %;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;box-shadow:0 0 12px rgba(0,201,167,.3)}
 .omni-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.omni-chip{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--text-muted);transition:all .2s}
-.omni-chip:hover,.omni-chip.on{border-color:rgba(0,201,167,.35);background:rgba(0,201,167,.08);color:#fff}
+.omni-chip{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s;cursor:default}
+.omni-chip:hover,.omni-chip.on{border-color:rgba(0,201,167,.3);background:rgba(0,201,167,.07);color:#fff}
 .ci{font-size:18px}
-.perf-panel{background:rgba(0,0,0,.3);border:1px solid var(--border2);border-radius:var(--r);padding:28px}
+.perf-panel{background:rgba(0,0,0,.4);border:1px solid var(--border2);border-radius:16px;padding:28px;backdrop-filter:blur(16px)}
 .perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center}
 .perf-grid strong{display:block;font-size:36px;font-weight:900;letter-spacing:-1.5px;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
-.perf-grid span{font-size:12px;color:var(--text-muted);margin-top:5px;display:block}
+.perf-grid span{font-size:12px;color:var(--muted);margin-top:5px;display:block}
 
 /* RESULTS */
-.results-bg{background:var(--bg2)}
-.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.result-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:36px 24px;text-align:center;transition:all .25s;position:relative;overflow:hidden}
-.result-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.07),transparent);opacity:0;transition:opacity .3s}
-.result-card:hover{border-color:rgba(0,201,167,.3);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.3)}
-.result-card:hover::before{opacity:1}
-.result-num{font-size:54px;font-weight:900;letter-spacing:-2.5px;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.result-label{font-size:14px;color:var(--text-muted);line-height:1.55;font-weight:500}
+.results-bg{background:var(--bg3);position:relative;overflow:hidden}
+.results-bg::before{content:'';position:absolute;width:1000px;height:400px;background:radial-gradient(ellipse,rgba(123,97,255,.06),transparent 60 %);top:50 %;left:50 %;transform:translate(-50 %,-50 %)}
+.results-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative;z-index:1}
+.res-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:var(--r);padding:40px 24px;text-align:center;transition:all .3s;position:relative;overflow:hidden;cursor:default}
+.res-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.07),transparent);opacity:0;transition:opacity .3s}
+.res-card:hover{border-color:rgba(0,201,167,.25);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 40px rgba(0,201,167,.08)}
+.res-card:hover::before{opacity:1}
+.res-num{font-size:56px;font-weight:900;letter-spacing:-2.5px;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.res-label{font-size:14px;color:var(--muted);line-height:1.55;font-weight:500}
 
 /* PRICING */
-.pricing-section{background:var(--bg)}
+.pricing-bg{background:var(--bg)}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.price-card{border:1px solid var(--border);border-radius:20px;padding:36px 32px;position:relative;background:rgba(255,255,255,.03);transition:transform .25s,box-shadow .25s}
-.price-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
-.price-card.featured{background:linear-gradient(135deg,rgba(0,201,167,.08),rgba(123,97,255,.06));border-color:transparent}
-.price-card.featured::before{content:'';position:absolute;inset:-1px;border-radius:21px;background:linear-gradient(135deg,var(--teal),var(--purple));z-index:-1;opacity:.45}
-.badge-feat{position:absolute;top:-14px;left:50 %;transform:translateX(-50 %);background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:800;padding:5px 18px;border-radius:100px;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
-.price-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:8px}
-.price-desc{font-size:13.5px;color:var(--text-muted);margin-bottom:24px;line-height:1.55}
-.price-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:8px}
-.price-amount strong{font-size:44px;font-weight:900;letter-spacing:-2px;color:#fff}
-.price-amount span{font-size:15px;color:var(--text-muted);font-weight:500}
-.price-setup{font-size:12px;color:var(--text-muted);margin-bottom:28px;opacity:.6}
-.price-divider{border:none;border-top:1px solid var(--border);margin:24px 0}
-.price-features{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
-.price-features li{font-size:14px;color:var(--text-muted);display:flex;align-items:center;gap:10px}
-.price-features li::before{content:'✓';color:var(--teal);font-weight:800;font-size:13px;flex-shrink:0}
-.price-features li.na{opacity:.35}
-.price-features li.na::before{content:'–';color:var(--text-muted)}
-.btn-plan{width:100 %;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.p-card{border:1px solid var(--border);border-radius:20px;padding:36px 32px;position:relative;background:rgba(255,255,255,.03);transition:transform .25s,box-shadow .25s}
+.p-card:hover{transform:translateY(-6px);box-shadow:0 28px 64px rgba(0,0,0,.45)}
+
+/* Featured card with pulsing glow */
+.p-card.featured{background:linear-gradient(135deg,rgba(0,201,167,.07),rgba(123,97,255,.05));border:2px solid transparent;background-clip:padding-box}
+.p-card.featured::before{content:'';position:absolute;inset:-2px;border-radius:22px;background:conic-gradient(from var(--angle),var(--teal),var(--purple),var(--teal));animation:spin-border 6s linear infinite;z-index:-1}
+.p-card.featured::after{content:'';position:absolute;inset:0;border-radius:20px;background:inherit;z-index:-1}
+.feat-badge{position:absolute;top:-14px;left:50 %;transform:translateX(-50 %);background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:800;padding:5px 18px;border-radius:100px;white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
+.p-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:8px}
+.p-desc{font-size:13.5px;color:var(--muted);margin-bottom:24px;line-height:1.55}
+.p-amount{display:flex;align-items:baseline;gap:4px;margin-bottom:8px}
+.p-amount strong{font-size:44px;font-weight:900;letter-spacing:-2px;color:#fff}
+.p-amount span{font-size:15px;color:var(--muted);font-weight:500}
+.p-setup{font-size:12px;color:var(--muted);margin-bottom:28px;opacity:.55}
+.p-div{border:none;border-top:1px solid var(--border);margin:24px 0}
+.p-feats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.p-feats li{font-size:14px;color:var(--muted);display:flex;align-items:center;gap:10px}
+.p-feats li::before{content:'✓';color:var(--teal);font-weight:800;font-size:13px;flex-shrink:0}
+.p-feats li.no{opacity:.32}
+.p-feats li.no::before{content:'–';color:var(--muted)}
+.btn-plan{width:100 %;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .2s;position:relative;overflow:hidden}
 .btn-plan.solid{background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff}
-.btn-plan.solid:hover{opacity:.9;transform:translateY(-1px)}
+.btn-plan.solid::after{content:'';position:absolute;top:0;left:-100 %;width:50 %;height:100 %;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shimmer 2s ease-in-out infinite}
+.btn-plan.solid:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(0,201,167,.3)}
 .btn-plan.outline{background:rgba(255,255,255,.06);color:#fff;border:1px solid var(--border2)}
 .btn-plan.outline:hover{background:rgba(255,255,255,.1)}
 
 /* TRUST */
-.trust-strip{background:rgba(0,201,167,.04);border-top:1px solid rgba(0,201,167,.1);border-bottom:1px solid rgba(0,201,167,.1);padding:24px 0}
-.trust-inner{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:9px;color:rgba(226,232,240,.45);font-size:13px;font-weight:600;padding:9px 24px;transition:color .2s}
-.trust-item:hover{color:var(--teal)}
-.trust-sep{width:1px;height:22px;background:var(--border)}
+.trust-strip{background:rgba(0,201,167,.03);border-top:1px solid rgba(0,201,167,.09);border-bottom:1px solid rgba(0,201,167,.09);padding:22px 0}
+.trust-in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.t-item{display:flex;align-items:center;gap:8px;color:rgba(226,232,240,.42);font-size:13px;font-weight:600;padding:8px 22px;transition:color .2s}
+.t-item:hover{color:var(--teal)}
+.t-sep{width:1px;height:20px;background:var(--border)}
 
-/* CONTACT */
-.contact-section{background:var(--bg2);position:relative;overflow:hidden}
-.contact-section::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(123,97,255,.07),transparent 60 %);top:50 %;right:-100px;transform:translateY(-50 %);pointer-events:none}
+/* FORM */
+.form-bg{background:var(--bg3);position:relative;overflow:hidden}
+.form-bg::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(123,97,255,.06),transparent 55 %);top:50 %;right:-150px;transform:translateY(-50 %)}
+.form-bg::after{content:'';position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(0,201,167,.05),transparent 55 %);top:50 %;left:-100px;transform:translateY(-50 %)}
 .form-wrap{max-width:700px;margin:0 auto;position:relative;z-index:1}
-.form-card{background:rgba(255,255,255,.04);backdrop-filter:blur(24px);border:1px solid var(--border2);border-radius:24px;padding:48px 44px}
+.form-card{background:rgba(255,255,255,.035);backdrop-filter:blur(24px);border:1px solid var(--border2);border-radius:24px;padding:48px 44px;box-shadow:0 32px 80px rgba(0,0,0,.3)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .field{display:flex;flex-direction:column;gap:7px}
-.field label{font-size:13px;font-weight:600;color:rgba(226,232,240,.65)}
-.field input,.field select{border:1px solid var(--border2);border-radius:9px;padding:13px 15px;font-size:14px;font-family:inherit;background:rgba(255,255,255,.05);color:#fff;transition:border-color .2s,background .2s;outline:none}
-.field input:focus,.field select:focus{border-color:var(--teal);background:rgba(0,201,167,.05)}
-.field input::placeholder{color:rgba(226,232,240,.2)}
+.field label{font-size:13px;font-weight:600;color:rgba(226,232,240,.6)}
+.field input,.field select{border:1px solid var(--border2);border-radius:9px;padding:13px 15px;font-size:14px;font-family:inherit;background:rgba(255,255,255,.05);color:#fff;transition:all .2s;outline:none}
+.field input:focus,.field select:focus{border-color:var(--teal);background:rgba(0,201,167,.04);box-shadow:0 0 0 3px rgba(0,201,167,.1)}
+.field input::placeholder{color:rgba(226,232,240,.18)}
 .field select option{background:#0a1628;color:#fff}
-.btn-submit{width:100 %;margin-top:24px;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;padding:16px;border-radius:10px;font-size:16px;font-weight:800;border:none;cursor:pointer;transition:all .2s}
-.btn-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,201,167,.3)}
-.form-note{text-align:center;font-size:12px;color:rgba(226,232,240,.28);margin-top:14px}
+.btn-submit{width:100 %;margin-top:24px;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;padding:17px;border-radius:11px;font-size:16px;font-weight:800;border:none;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.btn-submit::after{content:'';position:absolute;top:0;left:-100 %;width:50 %;height:100 %;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shimmer 2.5s ease-in-out infinite 2s}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,201,167,.3)}
+.form-note{text-align:center;font-size:12px;color:rgba(226,232,240,.25);margin-top:14px}
 
 /* FOOTER */
 footer{background:var(--bg);border-top:1px solid var(--border);padding:56px 0 28px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:44px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:44px}
 .f-logo{color:#fff;font-size:20px;font-weight:900;display:block;margin-bottom:14px;text-decoration:none;letter-spacing:-.4px}
 .f-logo span{color:var(--teal)}
-.footer-brand p{font-size:14px;line-height:1.68;color:var(--text-muted);max-width:280px}
+.foot-brand p{font-size:14px;line-height:1.68;color:var(--muted);max-width:280px}
 footer h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:16px}
 footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-footer ul li a{text-decoration:none;color:var(--text-muted);font-size:13.5px;transition:color .2s}
+footer ul li a{text-decoration:none;color:var(--muted);font-size:13.5px;transition:color .2s}
 footer ul li a:hover{color:var(--teal)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text-muted)}
-.footer-badges{display:flex;gap:8px}
-.f-badge{border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--text-muted)}
+.foot-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+.f-badges{display:flex;gap:8px}
+.f-badge{border:1px solid var(--border2);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:var(--muted)}
 
 /* RESPONSIVE */
 @media(max-width:960px){
-  .hero-grid,.star-grid,.footer-grid{grid-template-columns:1fr;gap:48px}
+  .hero-grid,.star-grid,.foot-grid{grid-template-columns:1fr;gap:48px}
   .bento-grid,.pricing-grid{grid-template-columns:1fr}
-  .bento-featured{grid-column:span 1;grid-row:span 1}
+  .avery-card{grid-column:span 1;grid-row:span 1}
   .results-grid{grid-template-columns:1fr 1fr}
   .how-grid{grid-template-columns:1fr}
-  .hero h1,.section-title,.star-section h2{font-size:36px;letter-spacing:-1.5px}
+  .how-connector{display:none}
+  .hero h1,.s-title,.star-bg h2{font-size:36px;letter-spacing:-1.5px}
   .container{padding:0 20px}
   .section{padding:72px 0}
   .form-row{grid-template-columns:1fr}
-  .form-card{padding:32px 24px}
-  .stat-sep,.trust-sep{display:none}
+  .form-card{padding:32px 22px}
+  .stat-sep,.t-sep{display:none}
   .nav-links{display:none}
 }
 @media(max-width:600px){
-  .results-grid,.pricing-grid{grid-template-columns:1fr}
-  .metric-bubbles{grid-template-columns:1fr 1fr}
+  .results-grid,.pricing-grid,.metric-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
+<!-- CURSOR SPOTLIGHT -->
+<div class="spotlight" id="spotlight"></div>
+
+<!-- NOISE GRAIN -->
+<div class="noise"></div>
+
 <!-- NAV -->
 <nav>
-  <div class="nav-inner">
+  <div class="nav-in">
     <a href="/" class="logo">
-      <svg width="32" height="32" viewBox="0 0 34 34" fill="none" style="margin-right:2px">
+      <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
         <rect width="34" height="34" rx="9" fill="#071224"/>
         <path d="M17 6L5 16H8V28H15V21H19V28H26V16H29L17 6Z" fill="#00c9a7"/>
-        <circle cx="17" cy="6" r="2.5" fill="#ffffff"/>
+        <circle cx="17" cy="6" r="2.5" fill="#fff"/>
+        <circle cx="17" cy="6" r="4.5" fill="none" stroke="#00c9a7" stroke-width=".5" opacity=".4"/>
       </svg>
-      <span class="logo-word">Haven<span>IQ</span></span>
+      <span class="logo-w">Haven<span>IQ</span></span>
     </a>
     <ul class="nav-links">
       <li><a href="#agents">AI Agents</a></li>
@@ -293,60 +346,61 @@ footer ul li a:hover{color:var(--teal)}
 <!-- TICKER -->
 <div class="ticker">
   <div class="ticker-track">
-    <div class="ticker-item"><strong>Never</strong> miss another lead <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">🇨🇦 Built for <strong>Canadian real estate</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">PIPEDA Compliant <span class="ticker-sep">·</span> FINTRAC Ready <span class="ticker-sep">·</span> Bilingual <strong>EN / FR</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">Avery responds in <strong>under 60 seconds</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">Your 24/7 AI workforce <span class="ticker-sep">·</span> <strong>more effective, less costly</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item"><strong>Never</strong> miss another lead <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">🇨🇦 Built for <strong>Canadian real estate</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">PIPEDA Compliant <span class="ticker-sep">·</span> FINTRAC Ready <span class="ticker-sep">·</span> Bilingual <strong>EN / FR</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">Avery responds in <strong>under 60 seconds</strong> <span class="ticker-sep">·</span></div>
-    <div class="ticker-item">Your 24/7 AI workforce <span class="ticker-sep">·</span> <strong>more effective, less costly</strong> <span class="ticker-sep">·</span></div>
+    <div class="ticker-item"><strong>Never</strong> miss another lead <span class="t-sep">·</span></div>
+    <div class="ticker-item">🇨🇦 Built for <strong>Canadian real estate</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">PIPEDA Compliant <span class="t-sep">·</span> FINTRAC Ready <span class="t-sep">·</span> Bilingual <strong>EN / FR</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">Avery responds in <strong>under 60 seconds</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">Your 24/7 AI workforce <span class="t-sep">·</span> <strong>more effective, less costly</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item"><strong>Never</strong> miss another lead <span class="t-sep">·</span></div>
+    <div class="ticker-item">🇨🇦 Built for <strong>Canadian real estate</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">PIPEDA Compliant <span class="t-sep">·</span> FINTRAC Ready <span class="t-sep">·</span> Bilingual <strong>EN / FR</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">Avery responds in <strong>under 60 seconds</strong> <span class="t-sep">·</span></div>
+    <div class="ticker-item">Your 24/7 AI workforce <span class="t-sep">·</span> <strong>more effective, less costly</strong> <span class="t-sep">·</span></div>
   </div>
 </div>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+  <canvas id="particles-canvas"></canvas>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
   <div class="grid-floor"></div>
   <div class="container hero-inner">
     <div class="hero-grid">
       <div class="fade-up">
         <div class="hero-badge">Now live in Canada 🇨🇦</div>
-        <h1><span class="gradient-text">Your real estate website just got a full-time AI team</span></h1>
+        <h1 id="heroTitle"></h1>
         <p class="hero-sub">HavenIQ deploys six AI employees into your brokerage, answering every inquiry in under 60 seconds, chasing rent, coordinating repairs and <strong>never taking a day off.</strong></p>
         <div class="hero-ctas">
           <a href="#contact" class="btn-primary">Start 14-Day Free Trial</a>
           <a href="#agents" class="btn-ghost">Meet the team →</a>
         </div>
       </div>
-      <div class="fade-up" style="transition-delay:.2s">
+      <div class="fade-up" style="transition-delay:.25s">
         <div class="chat-wrap">
           <div class="chat-float">
             <div class="chat-card">
-              <div class="chat-header">
+              <div class="chat-hdr">
                 <div class="chat-av">🤖</div>
-                <div class="chat-info">
+                <div>
                   <h4>Avery, Sales AI</h4>
                   <p>HavenIQ · haveniq.ca</p>
                 </div>
-                <div class="online-dot"></div>
+                <div class="online"></div>
               </div>
               <div class="chat-body" id="chatBody">
                 <div class="msg bot">
-                  <div class="bubble">Hi! I'm Avery 👋 I saw you were looking at the 2-bed on King St W. Rent or buy?</div>
-                  <div class="msg-time">10:47 p.m. ✓✓</div>
+                  <div class="bubble">Hi! I'm Avery 👋 Saw you looking at the 2-bed on King St W. Rent or buy?</div>
+                  <div class="msg-t">10:47 p.m. ✓✓</div>
                 </div>
                 <div class="msg user">
                   <div class="bubble">Rent, under $2,600/mo in the area</div>
-                  <div class="msg-time">10:48 p.m. ✓✓</div>
+                  <div class="msg-t">10:48 p.m. ✓✓</div>
                 </div>
                 <div class="msg bot">
-                  <div class="bubble">I have 3 units that match! Thursday 11 a.m. or Saturday 10 a.m. for a viewing?</div>
-                  <div class="msg-time">10:48 p.m. ✓✓</div>
+                  <div class="bubble">I have 3 perfect matches! Thursday 11 a.m. or Saturday 10 a.m. for a viewing?</div>
+                  <div class="msg-t">10:48 p.m. ✓✓</div>
                 </div>
                 <div class="typing" id="typing"><span></span><span></span><span></span></div>
               </div>
@@ -354,8 +408,8 @@ footer ul li a:hover{color:var(--teal)}
           </div>
         </div>
         <div class="channels">
-          <div class="ch-pill active">📱 SMS / iMessage</div>
-          <div class="ch-pill active">📧 Email</div>
+          <div class="ch-pill on">📱 SMS / iMessage</div>
+          <div class="ch-pill on">📧 Email</div>
           <div class="ch-pill">💬 Messenger</div>
           <div class="ch-pill">🌐 Web Chat</div>
           <div class="ch-pill">📞 Voice</div>
@@ -366,119 +420,132 @@ footer ul li a:hover{color:var(--teal)}
 </section>
 
 <!-- STATS -->
-<div class="stats-section">
+<div class="stats-wrap">
   <div class="container">
-    <div class="stats-inner">
-      <div class="stat-item fade-up"><strong>104K+</strong><span>real estate businesses in Canada</span></div>
+    <div class="stats-in">
+      <div class="stat fade-up"><strong data-count="104">0</strong><span>K+ real estate businesses in Canada</span></div>
       <div class="stat-sep"></div>
-      <div class="stat-item fade-up"><strong>48 %</strong><span>of agents never follow up on leads</span></div>
+      <div class="stat fade-up"><strong data-count="48">0</strong><span>% of agents never follow up on leads</span></div>
       <div class="stat-sep"></div>
-      <div class="stat-item fade-up"><strong>&lt;60s</strong><span>Avery's guaranteed first response</span></div>
+      <div class="stat fade-up"><strong>&lt;60s</strong><span>Avery's guaranteed first response</span></div>
       <div class="stat-sep"></div>
-      <div class="stat-item fade-up"><strong>24/7</strong><span>always-on, no holidays, no overtime</span></div>
+      <div class="stat fade-up"><strong>24/7</strong><span>always-on, no holidays, no overtime</span></div>
     </div>
   </div>
 </div>
 
 <!-- HOW IT WORKS -->
-<section class="section" id="how">
+<section class="section" id="how" style="background:var(--bg2)">
   <div class="container">
-    <div class="section-label">Simple by design</div>
-    <h2 class="section-title fade-up"><span class="gradient-text">Connected in 3 steps</span></h2>
-    <p class="section-sub fade-up">No migrations. No replacing your existing stack. HavenIQ wraps around what you already use.</p>
-    <div class="how-grid fade-up">
-      <div class="how-card">
-        <div class="how-num">STEP 01</div>
-        <div class="how-icon">🔌</div>
-        <h3>Connect your website</h3>
-        <p>Paste one line of code into your site header. Avery appears as a live chat widget instantly. Or connect your contact form via webhook, no developer required.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-num">STEP 02</div>
-        <div class="how-icon">⚙️</div>
-        <h3>Configure your agents</h3>
-        <p>A 15-minute onboarding call. We configure each agent to your province's regulations and connect to your CRM, Yardi, AppFolio, Buildium or Salesforce.</p>
-      </div>
-      <div class="how-card">
-        <div class="how-num">STEP 03</div>
-        <div class="how-icon">🚀</div>
-        <h3>Watch leads convert</h3>
-        <p>Every inquiry gets an instant intelligent response. A live dashboard shows every conversation, qualified lead and booked showing in real time.</p>
+    <div class="s-label">Simple by design</div>
+    <h2 class="s-title fade-up"><span class="g-text">Connected in 3 steps</span></h2>
+    <p class="s-sub fade-up">No migrations. No replacing your stack. HavenIQ wraps around what you already use.</p>
+    <div class="how-wrap fade-up">
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">01</div>
+          <div class="how-icon">🔌</div>
+          <h3>Connect your website</h3>
+          <p>Paste one line of code into your site header. Avery appears as a live chat widget instantly. Or connect your contact form via webhook, no developer required.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">02</div>
+          <div class="how-icon">⚙️</div>
+          <h3>Configure your agents</h3>
+          <p>A 15-minute onboarding call. We configure each agent to your province's tenancy regulations and connect to your CRM, Yardi, AppFolio, Buildium or Salesforce.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-num">03</div>
+          <div class="how-icon">🚀</div>
+          <h3>Watch leads convert</h3>
+          <p>Every inquiry gets an instant intelligent response. A live dashboard shows every conversation, qualified lead and booked showing, updated in real time.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- AGENTS -->
+<!-- AGENTS BENTO -->
 <section class="section" id="agents" style="background:var(--bg)">
   <div class="container">
-    <div class="section-label">The AI team</div>
-    <h2 class="section-title fade-up"><span class="gradient-text">One subscription.</span> Six AI employees.</h2>
-    <p class="section-sub fade-up">Each agent has a defined role and operates across the channels Canadians actually use.</p>
+    <div class="s-label">The AI team</div>
+    <h2 class="s-title fade-up"><span class="g-text">One subscription.</span> Six AI employees.</h2>
+    <p class="s-sub fade-up">Each agent has a defined role and operates across the channels Canadians actually use.</p>
     <div class="bento-grid">
-      <div class="bento-card bento-featured tilt-card fade-up">
-        <div class="agent-icon-wrap icon-bg-teal">🏡</div>
-        <h3>Avery</h3>
-        <div class="agent-role-tag">Sales AI, Star Agent ⭐</div>
-        <p>Captures leads from your website, Realtor.ca, Rentals.ca and Zumper. Qualifies prospects, books showings and runs multi-stage follow-up sequences, responding in under 60 seconds, any time of day.</p>
-        <div class="metric-bubbles">
-          <div class="metric-bubble"><strong>3×</strong><span>More showings booked</span></div>
-          <div class="metric-bubble"><strong>&lt;60s</strong><span>First response</span></div>
-          <div class="metric-bubble"><strong>∞</strong><span>Simultaneous leads</span></div>
-          <div class="metric-bubble"><strong>EN/FR</strong><span>Bilingual</span></div>
+
+      <!-- AVERY, rotating gradient border -->
+      <div class="avery-card fade-up">
+        <div class="avery-inner">
+          <div class="avery-glow"></div>
+          <div class="a-icon i-teal">🏡</div>
+          <h3>Avery</h3>
+          <div class="a-role">Sales AI, Star Agent ⭐</div>
+          <p>Captures leads from your website, Realtor.ca, Rentals.ca and Zumper. Qualifies prospects, books showings and runs automated follow-up sequences, responding to every inquiry in under 60 seconds, any time of day.</p>
+          <div class="metric-grid">
+            <div class="metric"><strong>3×</strong><span>More showings booked</span></div>
+            <div class="metric"><strong>&lt;60s</strong><span>First response</span></div>
+            <div class="metric"><strong>∞</strong><span>Simultaneous leads</span></div>
+            <div class="metric"><strong>EN/FR</strong><span>Bilingual</span></div>
+          </div>
+          <span class="b-tag accent">⭐ Start Here</span>
         </div>
-        <span class="bento-tag">⭐ Start Here</span>
       </div>
-      <div class="bento-card tilt-card fade-up" style="transition-delay:.07s">
-        <div class="agent-icon-wrap icon-bg-blue">💸</div>
+
+      <div class="bento-card fade-up" style="transition-delay:.07s">
+        <div class="a-icon i-blue">💸</div>
         <h3>Morgan</h3>
-        <div class="agent-role-tag">Treasury AI</div>
+        <div class="a-role">Treasury AI</div>
         <p>Automates owner disbursements and management fee reconciliation via Canadian EFT rails. Integrates with Yardi, AppFolio and Buildium.</p>
-        <span class="bento-tag plain">Finance</span>
+        <span class="b-tag plain">Finance</span>
       </div>
-      <div class="bento-card tilt-card fade-up" style="transition-delay:.12s">
-        <div class="agent-icon-wrap icon-bg-green">🎧</div>
+
+      <div class="bento-card fade-up" style="transition-delay:.12s">
+        <div class="a-icon i-green">🎧</div>
         <h3>Riley</h3>
-        <div class="agent-role-tag">Tenant Services AI</div>
+        <div class="a-role">Tenant Services AI</div>
         <p>Handles tenant inquiries 24/7, lease renewals, noise complaints, move-in checklists. Resolves 68 % of tickets without escalation, in EN or FR.</p>
-        <span class="bento-tag plain">Support</span>
+        <span class="b-tag plain">Support</span>
       </div>
-      <div class="bento-card tilt-card fade-up" style="transition-delay:.05s">
-        <div class="agent-icon-wrap icon-bg-amber">🔧</div>
+
+      <div class="bento-card fade-up" style="transition-delay:.05s">
+        <div class="a-icon i-amber">🔧</div>
         <h3>Owen</h3>
-        <div class="agent-role-tag">Maintenance AI</div>
+        <div class="a-role">Maintenance AI</div>
         <p>Triages repairs, dispatches verified contractors across Canadian provinces and tracks work orders from first report to final sign-off.</p>
-        <span class="bento-tag plain">Operations</span>
+        <span class="b-tag plain">Operations</span>
       </div>
-      <div class="bento-card tilt-card fade-up" style="transition-delay:.1s">
-        <div class="agent-icon-wrap icon-bg-purple">📋</div>
+
+      <div class="bento-card fade-up" style="transition-delay:.1s">
+        <div class="a-icon i-purple">📋</div>
         <h3>Harper</h3>
-        <div class="agent-role-tag">Collections AI</div>
-        <p>Bilingual (EN/FR) payment reminders via SMS and email. Fully compliant with RTA Ontario, TRAC BC and RTRA Alberta.</p>
-        <span class="bento-tag plain">Collections</span>
+        <div class="a-role">Collections AI</div>
+        <p>Bilingual payment reminders via SMS and email. Fully compliant with RTA Ontario, TRAC BC and RTRA Alberta.</p>
+        <span class="b-tag plain">Collections</span>
       </div>
-      <div class="bento-card tilt-card fade-up" style="transition-delay:.15s">
-        <div class="agent-icon-wrap icon-bg-slate">📊</div>
+
+      <div class="bento-card fade-up" style="transition-delay:.15s">
+        <div class="a-icon i-slate">📊</div>
         <h3>Logan</h3>
-        <div class="agent-role-tag">Data Intelligence AI</div>
-        <p>Real-time dashboards on portfolio performance, vacancy rates and lead conversion. Weekly reports every Monday morning automatically.</p>
-        <span class="bento-tag plain">Analytics</span>
+        <div class="a-role">Data Intelligence AI</div>
+        <p>Real-time dashboards on portfolio performance, vacancy rates and lead conversion. Weekly reports every Monday morning.</p>
+        <span class="b-tag plain">Analytics</span>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- STAR AGENT -->
-<section class="section star-section">
+<section class="section star-bg">
   <div class="container">
     <div class="star-grid">
       <div class="fade-up">
-        <div class="star-label">⭐ Star Agent</div>
+        <div class="s-label">⭐ Star Agent</div>
         <h2>The agent that pays for itself on day one</h2>
-        <p class="lead">48 % of Canadian agents never follow up on a lead at all. Avery responds to every inquiry in under 60 seconds, whether it's a submission at 11 p.m. on Friday or a Sunday morning inquiry. She profiles, nurtures and books so your agents walk in ready to close.</p>
+        <p class="star-lead">48 % of Canadian agents never follow up on a lead at all. Avery responds to every inquiry in under 60 seconds, whether it's a submission at 11 p.m. on Friday or a Zumper inquiry on Sunday morning. She profiles, nurtures and books so your agents walk in ready to close.</p>
         <ul class="check-list">
           <li>Instant response to every inbound lead, any time, under 60 seconds</li>
-          <li>Smart profiling: budget, timeline, bedrooms, preferred neighbourhood</li>
+          <li>Smart profiling: budget, timeline, bedrooms, neighbourhood</li>
           <li>Automated showing scheduler synced to your calendar</li>
           <li>Multi-stage follow-up over SMS, email and web chat</li>
           <li>Fully bilingual, switches seamlessly between English and French</li>
@@ -510,67 +577,67 @@ footer ul li a:hover{color:var(--teal)}
 <!-- RESULTS -->
 <section class="section results-bg" id="results">
   <div class="container" style="text-align:center">
-    <div class="section-label">Results that speak for themselves</div>
-    <h2 class="section-title fade-up" style="max-width:520px;margin:0 auto 16px"><span class="gradient-text">Numbers that actually matter</span></h2>
-    <p class="section-sub fade-up" style="margin:0 auto 60px">Faster responses, fewer revenue leaks and an operation that never clocks out.</p>
+    <div class="s-label">Results that speak for themselves</div>
+    <h2 class="s-title fade-up" style="max-width:520px;margin:0 auto 16px"><span class="g-text">Numbers that actually matter</span></h2>
+    <p class="s-sub fade-up" style="margin:0 auto 60px">Faster responses, fewer revenue leaks, an operation that never clocks out.</p>
     <div class="results-grid">
-      <div class="result-card fade-up"><div class="result-num">3×</div><div class="result-label">Increase in sales conversions from faster lead response</div></div>
-      <div class="result-card fade-up" style="transition-delay:.1s"><div class="result-num">68 %</div><div class="result-label">Of tenant service queries resolved without human escalation</div></div>
-      <div class="result-card fade-up" style="transition-delay:.2s"><div class="result-num">90 %+</div><div class="result-label">Reduction in first-response time for new inbound leads</div></div>
-      <div class="result-card fade-up" style="transition-delay:.3s"><div class="result-num">24/7</div><div class="result-label">Always-on coverage, no after-hours leads left behind</div></div>
+      <div class="res-card fade-up"><div class="res-num">3×</div><div class="res-label">Increase in sales conversions from faster lead response</div></div>
+      <div class="res-card fade-up" style="transition-delay:.1s"><div class="res-num">68 %</div><div class="res-label">Of tenant service queries resolved without human escalation</div></div>
+      <div class="res-card fade-up" style="transition-delay:.2s"><div class="res-num">90 %+</div><div class="res-label">Reduction in first-response time for new inbound leads</div></div>
+      <div class="res-card fade-up" style="transition-delay:.3s"><div class="res-num">24/7</div><div class="res-label">Always-on coverage, no after-hours leads left behind</div></div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section pricing-section" id="pricing">
+<section class="section pricing-bg" id="pricing">
   <div class="container">
-    <div class="section-label">Simple pricing</div>
-    <h2 class="section-title fade-up">No surprises. <span class="gradient-text">No per-lead fees.</span></h2>
-    <p class="section-sub fade-up">Flat monthly subscription. Cancel anytime. Every plan starts with a 14-day free trial.</p>
+    <div class="s-label">Simple pricing</div>
+    <h2 class="s-title fade-up">No surprises. <span class="g-text">No per-lead fees.</span></h2>
+    <p class="s-sub fade-up">Flat monthly subscription. Cancel anytime. Every plan starts with a 14-day free trial.</p>
     <div class="pricing-grid">
-      <div class="price-card fade-up">
-        <div class="price-name">Starter</div>
-        <div class="price-desc">For independent agents and small landlords up to 25 units.</div>
-        <div class="price-amount"><strong>$249</strong><span>CAD / mo</span></div>
-        <div class="price-setup">+ $499 one-time setup</div>
-        <hr class="price-divider"/>
-        <ul class="price-features">
+      <div class="p-card fade-up">
+        <div class="p-name">Starter</div>
+        <div class="p-desc">For independent agents and small landlords up to 25 units.</div>
+        <div class="p-amount"><strong>$249</strong><span>CAD / mo</span></div>
+        <div class="p-setup">+ $499 one-time setup</div>
+        <hr class="p-div"/>
+        <ul class="p-feats">
           <li>Avery, Sales AI</li>
           <li>Riley, Tenant Services AI</li>
           <li>SMS + Email + Web Chat</li>
           <li>Live lead dashboard</li>
           <li>1 CRM integration</li>
-          <li class="na">Morgan, Owen, Harper, Logan</li>
-          <li class="na">EN/FR bilingual</li>
+          <li class="no">Morgan, Owen, Harper, Logan</li>
+          <li class="no">EN/FR bilingual</li>
         </ul>
         <button class="btn-plan outline">Start Free Trial</button>
       </div>
-      <div class="price-card featured fade-up" style="transition-delay:.1s">
-        <div class="badge-feat">Most Popular</div>
-        <div class="price-name">Growth</div>
-        <div class="price-desc">For property managers and brokerages with 26–150 units.</div>
-        <div class="price-amount"><strong>$599</strong><span>CAD / mo</span></div>
-        <div class="price-setup">+ $999 one-time setup</div>
-        <hr class="price-divider"/>
-        <ul class="price-features">
+      <div class="p-card featured fade-up" style="transition-delay:.1s">
+        <div class="feat-badge">Most Popular</div>
+        <div class="p-name">Growth</div>
+        <div class="p-desc">For property managers and brokerages with 26–150 units.</div>
+        <div class="p-amount"><strong>$599</strong><span>CAD / mo</span></div>
+        <div class="p-setup">+ $999 one-time setup</div>
+        <hr class="p-div"/>
+        <ul class="p-feats">
           <li>Avery, Sales AI</li>
           <li>Riley, Tenant Services AI</li>
           <li>Owen, Maintenance AI</li>
           <li>Harper, Collections AI</li>
-          <li>All channels + EN/FR</li>
+          <li>All channels + EN/FR bilingual</li>
           <li>Up to 3 CRM integrations</li>
           <li>Priority onboarding</li>
         </ul>
         <button class="btn-plan solid">Start Free Trial</button>
       </div>
-      <div class="price-card fade-up" style="transition-delay:.2s">
-        <div class="price-name">Scale</div>
-        <div class="price-desc">Full six-agent team for property managers with 150+ units.</div>
-        <div class="price-amount"><strong>$1,299</strong><span>CAD / mo</span></div>
-        <div class="price-setup">+ $1,999 one-time setup</div>
-        <hr class="price-divider"/>
-        <ul class="price-features">
+      <div class="p-card fade-up" style="transition-delay:.2s">
+        <div class="p-name">Scale</div>
+        <div class="p-desc">Full six-agent team for property managers with 150+ units.</div>
+        <div class="p-amount"><strong>$1,299</strong><span>CAD / mo</span></div>
+        <div class="p-setup">+ $1,999 one-time setup</div>
+        <hr class="p-div"/>
+        <ul class="p-feats">
           <li>All 6 agents, full team</li>
           <li>All channels including Voice</li>
           <li>EN/FR bilingual</li>
@@ -582,34 +649,29 @@ footer ul li a:hover{color:var(--teal)}
         <button class="btn-plan outline">Start Free Trial</button>
       </div>
     </div>
-    <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--text-muted)">500+ units or need white-labelling? <a href="#contact" style="color:var(--teal);font-weight:700;text-decoration:none">Talk to us about Enterprise →</a></p>
+    <p style="text-align:center;margin-top:24px;font-size:14px;color:var(--muted)">500+ units or need white-labelling? <a href="#contact" style="color:var(--teal);font-weight:700;text-decoration:none">Talk to us about Enterprise →</a></p>
   </div>
 </section>
 
 <!-- TRUST -->
 <div class="trust-strip">
-  <div class="trust-inner">
-    <div class="trust-item">🔒 PIPEDA Compliant</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">🏦 FINTRAC Ready</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">⚖️ Provincial RTA Compliant</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">🌐 Bilingual EN / FR</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">🛡️ SOC 2 Type II</div>
-    <div class="trust-sep"></div>
-    <div class="trust-item">🇨🇦 Canadian Data Residency</div>
+  <div class="trust-in">
+    <div class="t-item">🔒 PIPEDA Compliant</div><div class="t-sep"></div>
+    <div class="t-item">🏦 FINTRAC Ready</div><div class="t-sep"></div>
+    <div class="t-item">⚖️ Provincial RTA Compliant</div><div class="t-sep"></div>
+    <div class="t-item">🌐 Bilingual EN / FR</div><div class="t-sep"></div>
+    <div class="t-item">🛡️ SOC 2 Type II</div><div class="t-sep"></div>
+    <div class="t-item">🇨🇦 Canadian Data Residency</div>
   </div>
 </div>
 
 <!-- CONTACT -->
-<section class="section contact-section" id="contact">
+<section class="section form-bg" id="contact">
   <div class="container">
     <div style="text-align:center;margin-bottom:48px">
-      <div class="section-label">Get started</div>
-      <h2 class="section-title fade-up"><span class="gradient-text">Book your free 14-day trial</span></h2>
-      <p class="section-sub fade-up" style="margin:0 auto">Avery live on your website within 24 hours. No commitment, no credit card.</p>
+      <div class="s-label">Get started</div>
+      <h2 class="s-title fade-up"><span class="g-text">Book your free 14-day trial</span></h2>
+      <p class="s-sub fade-up" style="margin:0 auto">Avery live on your website within 24 hours. No commitment, no credit card required.</p>
     </div>
     <div class="form-wrap fade-up">
       <div class="form-card">
@@ -645,8 +707,8 @@ footer ul li a:hover{color:var(--teal)}
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
+    <div class="foot-grid">
+      <div class="foot-brand">
         <span class="f-logo">Haven<span>IQ</span></span>
         <p>AI employees for the Canadian real estate industry. Six specialized agents, one subscription, zero leads left unanswered. Built in Canada, compliant by default.</p>
       </div>
@@ -673,13 +735,10 @@ footer ul li a:hover{color:var(--teal)}
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="foot-bottom">
       <span>© 2026 HavenIQ Inc. All rights reserved. · haveniq.ca</span>
-      <div class="footer-badges">
-        <span class="f-badge">PIPEDA</span>
-        <span class="f-badge">SOC 2</span>
-        <span class="f-badge">EN/FR</span>
-        <span class="f-badge">🇨🇦</span>
+      <div class="f-badges">
+        <span class="f-badge">PIPEDA</span><span class="f-badge">SOC 2</span><span class="f-badge">EN/FR</span><span class="f-badge">🇨🇦</span>
       </div>
     </div>
   </div>
@@ -687,62 +746,153 @@ footer ul li a:hover{color:var(--teal)}
 
 <script>
 (function(){
-  // Scroll fade-up
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-  },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.fade-up').forEach(el=>obs.observe(el));
 
-  // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click',e=>{
-      const t=document.querySelector(a.getAttribute('href'));
-      if(!t)return;
-      e.preventDefault();
-      window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
-    });
+/* CURSOR SPOTLIGHT */
+const spotlight = document.getElementById('spotlight');
+document.addEventListener('mousemove', e => {
+  document.documentElement.style.setProperty('--mouse-x', e.clientX + 'px');
+  document.documentElement.style.setProperty('--mouse-y', e.clientY + 'px');
+});
+
+/* SCROLL FADE-UP */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(!t) return;
+    e.preventDefault();
+    window.scrollTo({top: t.getBoundingClientRect().top + window.scrollY - 70, behavior:'smooth'});
   });
+});
 
-  // 3D tilt on agent cards
-  document.querySelectorAll('.tilt-card').forEach(card=>{
-    card.addEventListener('mousemove',e=>{
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-0.5;
-      const y=(e.clientY-r.top)/r.height-0.5;
-      card.style.transform=`perspective(900px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateZ(8px) translateY(-4px)`;
-      card.style.transition='transform .1s ease';
-    });
-    card.addEventListener('mouseleave',()=>{
-      card.style.transform='perspective(900px) rotateY(0) rotateX(0) translateZ(0) translateY(0)';
-      card.style.transition='transform .5s ease';
-    });
+/* HERO WORD REVEAL */
+const heroTitle = document.getElementById('heroTitle');
+const heroText = 'Your real estate website just got a full-time AI team';
+const words = heroText.split(' ');
+heroTitle.innerHTML = words.map((w,i) => {
+  const isGrad = i >= 6;
+  return `<span class="word${isGrad?' g-text':''}" style="transition-delay:${i*0.08}s">${w}</span>`;
+}).join(' ');
+setTimeout(() => {
+  document.querySelectorAll('.word').forEach(w => w.classList.add('show'));
+}, 400);
+
+/* PARTICLE CANVAS */
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+const pts = Array.from({length:70},()=>({
+  x: Math.random()*canvas.width,
+  y: Math.random()*canvas.height,
+  r: Math.random()*1.4+0.4,
+  s: Math.random()*0.25+0.08,
+  o: Math.random()*0.35+0.08,
+  c: Math.random()>.5?'rgba(0,201,167,':'rgba(123,97,255,'
+}));
+function drawParticles(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  pts.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=p.c+p.o+')';
+    ctx.fill();
+    p.y-=p.s;
+    if(p.y<-5){p.y=canvas.height+5;p.x=Math.random()*canvas.width;}
   });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 
-  // Chat animation, plays once, no loop
-  const typing=document.getElementById('typing');
-  const chatBody=document.getElementById('chatBody');
-  if(typing&&chatBody){
+/* COUNTER ANIMATION */
+function animateCount(el, target, suffix){
+  let start = null;
+  const dur = 1800;
+  const step = ts => {
+    if(!start) start = ts;
+    const prog = Math.min((ts-start)/dur,1);
+    const eased = 1-Math.pow(1-prog,3);
+    el.textContent = Math.floor(eased*target)+(suffix||'');
+    if(prog<1) requestAnimationFrame(step);
+    else el.textContent = target+(suffix||'');
+  };
+  requestAnimationFrame(step);
+}
+const cObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el = e.target;
+      const val = parseInt(el.dataset.count);
+      const suf = el.parentElement.querySelector('span')?.textContent?.startsWith('K+') ? 'K+' : '%';
+      animateCount(el, val, suf);
+      cObs.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(el => cObs.observe(el));
+
+/* 3D TILT ON AGENT CARDS */
+document.querySelectorAll('.bento-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(800px) rotateY(${x*10}deg) rotateX(${-y*10}deg) translateZ(6px) translateY(-4px)`;
+    card.style.transition='transform .1s';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='perspective(800px) rotateY(0) rotateX(0) translateZ(0) translateY(0)';
+    card.style.transition='transform .5s ease';
+  });
+});
+
+/* CHAT ANIMATION, plays once */
+const typing = document.getElementById('typing');
+const chatBody = document.getElementById('chatBody');
+if(typing && chatBody){
+  setTimeout(()=>{
+    typing.style.display='flex';
     setTimeout(()=>{
-      typing.style.display='flex';
-      setTimeout(()=>{
-        typing.style.display='none';
-        const m=document.createElement('div');
-        m.className='msg bot';
-        m.innerHTML='<div class="bubble">What\'s the best number to reach you? I\'ll send the details right away.</div><div class="msg-time">10:49 p.m. ✓✓</div>';
-        chatBody.insertBefore(m,typing);
-        chatBody.scrollTop=chatBody.scrollHeight;
-      },2200);
-    },3500);
-  }
+      typing.style.display='none';
+      const m = document.createElement('div');
+      m.className='msg bot';
+      m.innerHTML='<div class="bubble">What\'s the best number to reach you? I\'ll send the details right away.</div><div class="msg-t">10:49 p.m. ✓✓</div>';
+      chatBody.insertBefore(m, typing);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    },2200);
+  },3500);
+}
 
-  // Parallax orbs on scroll
-  window.addEventListener('scroll',()=>{
-    const y=window.scrollY;
-    const orbs=document.querySelectorAll('.orb');
-    if(orbs[0]) orbs[0].style.transform=`translateY(${y*0.15}px)`;
-    if(orbs[1]) orbs[1].style.transform=`translateY(${y*0.1}px)`;
-    if(orbs[2]) orbs[2].style.transform=`translateY(${y*0.08}px)`;
-  },{passive:true});
+/* PARALLAX ORBS */
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  const orbs = document.querySelectorAll('.orb');
+  if(orbs[0]) orbs[0].style.transform=`translateY(${y*.14}px)`;
+  if(orbs[1]) orbs[1].style.transform=`translateY(${y*.09}px)`;
+  if(orbs[2]) orbs[2].style.transform=`translateY(${y*.07}px)`;
+},{passive:true});
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.btn-primary,.btn-nav,.btn-submit').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const x=(e.clientX-r.left-r.width/2)*.2;
+    const y=(e.clientY-r.top-r.height/2)*.2;
+    btn.style.transform=`translate(${x}px,${y}px)`;
+  });
+  btn.addEventListener('mouseleave',()=>{
+    btn.style.transform='translate(0,0)';
+    btn.style.transition='transform .3s ease';
+  });
+  btn.addEventListener('mouseenter',()=>{ btn.style.transition='transform .1s ease'; });
+});
+
 })();
 </script>
 </body>
