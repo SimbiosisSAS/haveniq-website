@@ -3,299 +3,303 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="description" content="HavenIQ deploys AI employees into your Canadian real estate business, answering every lead in under 60 seconds, 24/7."/>
-<meta property="og:title" content="HavenIQ, AI Employees for Canadian Real Estate"/>
-<meta property="og:url" content="https://haveniq.ca"/>
 <title>HavenIQ, AI Employees for Canadian Real Estate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:#fff;color:#0f172a;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased;background:#030d1a;color:#fff}
 :root{
-  --teal:#00c9a7;--teal-d:#00a888;--teal-l:#f0fdf9;--teal-m:#e0faf5;
-  --navy:#0f172a;--navy2:#1e293b;
-  --g50:#f8fafc;--g100:#f1f5f9;--g200:#e2e8f0;--g400:#94a3b8;--g600:#475569;--g800:#1e293b;
-  --purple:#7b61ff;--r:14px;
-  --sh:0 1px 3px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.04);
-  --sh-md:0 4px 20px rgba(0,0,0,.1),0 1px 4px rgba(0,0,0,.06);
-  --sh-lg:0 12px 48px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);
+  --dk:#030d1a;--dk2:#060f1e;--wh:#ffffff;--off:#f8fafc;
+  --teal:#00c9a7;--teal-d:#00a888;--purple:#7b61ff;
+  --navy:#0f172a;--muted-d:rgba(226,232,240,.52);--muted-l:#64748b;
+  --brd-d:rgba(255,255,255,.08);--brd-l:#e2e8f0;
 }
-.container{max-width:1160px;margin:0 auto;padding:0 40px}
-.g-text{background:linear-gradient(135deg,var(--teal) 0 per cent,var(--purple) 100 per cent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
-.fade-up.visible{opacity:1;transform:translateY(0)}
 
 /* SPOTLIGHT */
-#spotlight{pointer-events:none;position:fixed;inset:0;z-index:9999}
+#sp{pointer-events:none;position:fixed;top:0;left:0;width:100 per cent;height:100 per cent;z-index:9999}
 
 /* NAV */
-nav{position:sticky;top:0;z-index:200;background:rgba(255,255,255,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--g200);height:66px;display:flex;align-items:center}
-.nav-in{width:100 per cent;max-width:1160px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo{display:flex;align-items:center;gap:9px;text-decoration:none;flex-shrink:0}
-.logo-w{font-size:20px;font-weight:900;letter-spacing:-.5px;color:var(--navy)}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,backdrop-filter .3s}
+nav.solid{background:rgba(3,13,26,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--brd-d)}
+.logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-w{font-size:19px;font-weight:900;color:#fff;letter-spacing:-.5px}
 .logo-w span{color:var(--teal)}
-.nav-links{display:flex;gap:32px;list-style:none;margin:0 auto}
-.nav-links a{text-decoration:none;color:var(--g600);font-size:14px;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--navy)}
-.nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
-.lang-toggle{display:flex;align-items:center;border:1px solid var(--g200);border-radius:8px;overflow:hidden}
-.lang-opt{padding:6px 13px;cursor:pointer;transition:all .2s;color:var(--g600);background:transparent;border:none;font-family:inherit;font-size:13px;font-weight:700;line-height:1}
-.lang-opt.active{background:var(--navy);color:#fff}
-.btn-cta{background:var(--navy);color:#fff;padding:10px 22px;border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-block}
-.btn-cta:hover{background:var(--navy2);transform:translateY(-1px);box-shadow:var(--sh-md)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-r{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:flex;border:1px solid rgba(255,255,255,.14);border-radius:8px;overflow:hidden}
+.lo{padding:6px 13px;background:none;border:none;color:rgba(255,255,255,.5);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s}
+.lo.on{background:var(--teal);color:#030d1a}
+.btn-demo{background:var(--teal);color:#030d1a;padding:10px 22px;border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;transition:all .2s;white-space:nowrap}
+.btn-demo:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,201,167,.35)}
 
 /* TICKER */
-.ticker{background:var(--navy);overflow:hidden;padding:10px 0}
-.ticker-track{display:flex;white-space:nowrap;animation:tick 38s linear infinite;width:max-content}
-.ti{display:inline-flex;align-items:center;padding:0 28px;font-size:12px;font-weight:500;color:rgba(255,255,255,.5)}
-.ti strong{color:var(--teal);margin:0 4px;font-weight:700}
-.ts{color:rgba(255,255,255,.18);margin:0 6px}
-@keyframes tick{0 per cent{transform:translateX(0)}100 per cent{transform:translateX(-50 per cent)}}
+.ticker{background:rgba(0,201,167,.04);border-bottom:1px solid rgba(0,201,167,.1);overflow:hidden;padding:9px 0}
+.ticker-track{display:flex;white-space:nowrap;animation:tk 38s linear infinite;width:max-content}
+.ti{display:inline-flex;align-items:center;padding:0 28px;font-size:12px;font-weight:500;color:rgba(255,255,255,.45)}
+.ti strong{color:var(--teal);margin:0 4px}
+.ts{color:rgba(255,255,255,.15);margin:0 6px}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50 per cent)}}
 
 /* HERO */
-.hero{padding:100px 0 80px;position:relative;overflow:hidden;background:#fff}
-.hero-dots{position:absolute;inset:0;background-image:radial-gradient(var(--g200) 1px,transparent 1px);background-size:28px 28px;opacity:.55;pointer-events:none}
-.hero-blob1{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,201,167,.07),transparent 65 per cent);top:-200px;right:-100px;pointer-events:none;filter:blur(40px)}
-.hero-blob2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(123,97,255,.05),transparent 65 per cent);bottom:-100px;left:-50px;pointer-events:none;filter:blur(40px)}
-.hero-in{position:relative;z-index:1}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal-m);border:1px solid rgba(0,201,167,.3);color:var(--teal-d);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;margin-bottom:20px}
-.hero-badge::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50 per cent;animation:pulse 2s ease-in-out infinite;flex-shrink:0}
-@keyframes pulse{0 per cent,100 per cent{opacity:1;transform:scale(1)}50 per cent{opacity:.4;transform:scale(1.6)}}
-.hero h1{font-size:54px;font-weight:900;line-height:1.06;letter-spacing:-2.5px;margin-bottom:22px;color:var(--navy)}
-.hero-sub{font-size:18px;color:var(--g600);line-height:1.7;max-width:480px;margin-bottom:36px}
-.hero-sub strong{color:var(--navy)}
-.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn-primary{background:var(--teal);color:#fff;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-block;box-shadow:0 4px 14px rgba(0,201,167,.3)}
-.btn-primary:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,201,167,.4)}
-.btn-outline{background:transparent;color:var(--navy);padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;border:1.5px solid var(--g200);transition:all .2s;display:inline-block}
-.btn-outline:hover{border-color:var(--navy);background:var(--g50)}
-.hero-trust{display:flex;align-items:center;gap:8px;margin-top:26px;font-size:13px;color:var(--g400);flex-wrap:wrap}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:140px 48px 80px;text-align:center;position:relative;overflow:hidden;background:radial-gradient(ellipse at 70 per cent 10 per cent,rgba(0,201,167,.07),transparent 55 per cent),radial-gradient(ellipse at 20 per cent 90 per cent,rgba(123,97,255,.06),transparent 50 per cent),#030d1a}
+.hero-dots{position:absolute;inset:0;pointer-events:none;opacity:.25;background-image:radial-gradient(rgba(0,201,167,.4) 1px,transparent 1px);background-size:30px 30px;mask-image:radial-gradient(ellipse at center,black 20 per cent,transparent 75 per cent);-webkit-mask-image:radial-gradient(ellipse at center,black 20 per cent,transparent 75 per cent)}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,201,167,.09);border:1px solid rgba(0,201,167,.24);color:var(--teal);border-radius:100px;padding:6px 16px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:36px;position:relative;z-index:1}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--teal);border-radius:50 per cent;animation:pdot 2s ease-in-out infinite}
+@keyframes pdot{0 per cent,100 per cent{opacity:1;transform:scale(1)}50 per cent{opacity:.4;transform:scale(1.5)}}
+.hero h1{font-size:clamp(48px,7.5vw,92px);font-weight:900;line-height:1.02;letter-spacing:clamp(-2px,-0.04em,-4px);max-width:860px;margin:0 auto 28px;position:relative;z-index:1}
+.hero h1 .gr{background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(16px,1.8vw,20px);color:var(--muted-d);max-width:560px;margin:0 auto 44px;line-height:1.7;position:relative;z-index:1}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:72px;position:relative;z-index:1}
+.btn-p{background:var(--teal);color:#030d1a;padding:16px 32px;border-radius:12px;font-size:16px;font-weight:800;text-decoration:none;border:none;cursor:pointer;transition:all .2s;display:inline-block;box-shadow:0 4px 20px rgba(0,201,167,.35)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,201,167,.45)}
+.btn-s{background:rgba(255,255,255,.07);color:#fff;padding:16px 32px;border-radius:12px;font-size:16px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.14);transition:all .2s;display:inline-block}
+.btn-s:hover{background:rgba(255,255,255,.12)}
 
-/* CHAT CARD */
-.chat-card{background:#fff;border-radius:20px;box-shadow:var(--sh-lg);overflow:hidden;max-width:360px;margin:0 auto;border:1px solid var(--g200)}
-.chat-hdr{background:var(--navy);padding:16px 18px;display:flex;align-items:center;gap:12px}
-.chat-av{width:38px;height:38px;border-radius:50 per cent;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.chat-hdr h4{color:#fff;font-size:14px;font-weight:700}
-.chat-hdr p{color:rgba(255,255,255,.5);font-size:11px;margin-top:1px}
-.online{width:7px;height:7px;background:#4ade80;border-radius:50 per cent;margin-left:auto;box-shadow:0 0 8px rgba(74,222,128,.6)}
-.chat-body{padding:16px;background:#f8fafc;display:flex;flex-direction:column;gap:10px}
-.msg{display:flex;flex-direction:column}
-.msg.bot .bubble{background:#fff;border:1px solid var(--g200);border-radius:4px 16px 16px 16px;padding:10px 14px;font-size:13.5px;line-height:1.55;color:var(--navy);max-width:88 per cent;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.msg.user{align-items:flex-end}
-.msg.user .bubble{background:var(--navy);color:#fff;border-radius:16px 4px 16px 16px;padding:10px 14px;font-size:13.5px;max-width:88 per cent;font-weight:500;line-height:1.55}
-.msg-t{font-size:10px;color:var(--g400);margin-top:3px;padding:0 4px}
-.typing{display:flex;gap:4px;padding:10px 14px;background:#fff;border:1px solid var(--g200);border-radius:4px 16px 16px 16px;width:fit-content}
-.typing span{width:6px;height:6px;background:var(--g400);border-radius:50 per cent;animation:bou 1.2s ease-in-out infinite}
-.typing span:nth-child(2){animation-delay:.2s}
-.typing span:nth-child(3){animation-delay:.4s}
-@keyframes bou{0 per cent,60 per cent,100 per cent{transform:translateY(0)}30 per cent{transform:translateY(-6px)}}
-.channels{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;border-top:1px solid var(--g100);background:#fff}
-.ch-pill{background:var(--g100);color:var(--g600);border-radius:100px;padding:5px 12px;font-size:11px;font-weight:600}
-.ch-pill.on{background:var(--teal-m);color:var(--teal-d)}
+/* PHONE MOCKUP */
+.phone-outer{position:relative;z-index:1;display:inline-block}
+.phone{width:268px;background:#0a0a10;border-radius:48px;padding:13px;position:relative;box-shadow:inset 0 0 0 1.5px #2a2a35,0 0 0 9px #111118,0 0 0 10.5px #232330,0 60px 120px rgba(0,0,0,.75),0 0 80px rgba(0,201,167,.13)}
+.p-notch{position:absolute;top:19px;left:50 per cent;transform:translateX(-50 per cent);width:86px;height:23px;background:#0a0a10;border-radius:12px;z-index:10}
+.p-screen{border-radius:36px;overflow:hidden;background:#fff}
+.p-hdr{background:var(--navy);padding:34px 16px 14px;display:flex;align-items:center;gap:10px}
+.p-av{width:34px;height:34px;border-radius:50 per cent;background:linear-gradient(135deg,var(--teal),var(--purple));display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.p-hdr h4{color:#fff;font-size:13px;font-weight:700;line-height:1.2}
+.p-hdr p{color:rgba(255,255,255,.45);font-size:10px;margin-top:1px}
+.p-dot{width:7px;height:7px;background:#4ade80;border-radius:50 per cent;margin-left:auto;box-shadow:0 0 8px rgba(74,222,128,.7)}
+.p-body{padding:13px 11px;background:#f0f2f5;display:flex;flex-direction:column;gap:8px}
+.mb,.mu{display:flex;flex-direction:column}
+.mb .bb{background:#fff;border-radius:4px 14px 14px 14px;padding:9px 12px;font-size:11.5px;line-height:1.55;color:#0f172a;max-width:86 per cent;box-shadow:0 1px 2px rgba(0,0,0,.07)}
+.mu{align-items:flex-end}
+.mu .bb{background:linear-gradient(135deg,var(--teal),#00a888);color:#030d1a;border-radius:14px 4px 14px 14px;padding:9px 12px;font-size:11.5px;max-width:86 per cent;font-weight:600}
+.mt{font-size:9px;color:rgba(0,0,0,.28);margin-top:2px;padding:0 3px}
+.typ{display:flex;gap:4px;padding:8px 12px;background:#fff;border-radius:4px 14px 14px 14px;width:fit-content;box-shadow:0 1px 2px rgba(0,0,0,.07)}
+.typ span{width:5px;height:5px;background:#94a3b8;border-radius:50 per cent;animation:ty 1.2s ease-in-out infinite}
+.typ span:nth-child(2){animation-delay:.2s}.typ span:nth-child(3){animation-delay:.4s}
+@keyframes ty{0 per cent,60 per cent,100 per cent{transform:translateY(0)}30 per cent{transform:translateY(-5px)}}
 
-/* STATS */
-.stats-sec{padding:40px 0;background:var(--g50);border-top:1px solid var(--g200);border-bottom:1px solid var(--g200)}
-.stats-in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
-.stat{text-align:center;padding:12px 48px}
-.stat strong{display:block;font-size:40px;font-weight:900;letter-spacing:-2px;line-height:1;color:var(--navy);margin-bottom:6px}
-.stat strong em{font-style:normal;color:var(--teal)}
-.stat span{font-size:13px;color:var(--g600);font-weight:500}
-.stat-sep{width:1px;height:44px;background:var(--g200)}
+/* PROBLEM SECTION */
+.prob-sec{background:var(--dk);padding:100px 48px;text-align:center;position:relative;overflow:hidden}
+.prob-sec::before{content:'';position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,201,167,.05),transparent 60 per cent);top:50 per cent;left:50 per cent;transform:translate(-50 per cent,-50 per cent);pointer-events:none}
+.prob-ov{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:20px;opacity:.75}
+.prob-num{font-size:clamp(90px,16vw,180px);font-weight:900;line-height:.9;letter-spacing:-8px;background:linear-gradient(135deg,#fff 0 per cent,rgba(255,255,255,.55) 100 per cent);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.prob-unit{font-size:clamp(28px,4vw,48px);font-weight:700;color:rgba(255,255,255,.4);letter-spacing:-1px;margin-bottom:24px}
+.prob-sub{font-size:clamp(16px,1.8vw,21px);color:var(--muted-d);max-width:600px;margin:0 auto;line-height:1.68}
+.prob-sub em{color:#fff;font-style:normal;font-weight:600}
 
-/* SECTIONS */
-.section{padding:96px 0}
-.s-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal-d);margin-bottom:12px}
-.s-title{font-size:44px;font-weight:900;letter-spacing:-2px;line-height:1.07;margin-bottom:16px;color:var(--navy)}
-.s-sub{font-size:17px;color:var(--g600);max-width:540px;line-height:1.7;margin-bottom:56px}
+/* AVERY SECTION */
+.avery-sec{background:var(--wh);color:var(--navy);padding:120px 48px;clip-path:polygon(0 56px,100 per cent 0,100 per cent 100 per cent,0 100 per cent);margin-top:-56px}
+.avery-in{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.sec-label{font-size:11px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal-d);margin-bottom:12px;opacity:.8}
+.avery-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;line-height:1.06;margin-bottom:18px}
+.avery-sec h2 span{color:var(--teal-d)}
+.avery-desc{font-size:17px;color:var(--muted-l);line-height:1.72;margin-bottom:36px}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.feat-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#334155;line-height:1.55}
+.feat-list li::before{content:'✓';width:21px;height:21px;border-radius:50 per cent;background:var(--teal);color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+/* phone on white bg */
+.phone-light .phone{box-shadow:inset 0 0 0 1.5px #2a2a35,0 0 0 9px #111118,0 0 0 10.5px #232330,0 32px 64px rgba(0,0,0,.22),0 0 50px rgba(0,201,167,.08)}
 
-/* HOW IT WORKS */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--g200);border-radius:var(--r);overflow:hidden}
-.how-card{background:#fff;padding:40px 34px;transition:background .25s;position:relative;overflow:hidden}
-.how-card:hover{background:var(--teal-l)}
-.how-num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;font-size:14px;font-weight:800;margin-bottom:20px}
-.how-icon{font-size:28px;margin-bottom:14px}
-.how-card h3{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:10px}
-.how-card p{font-size:14.5px;color:var(--g600);line-height:1.65}
+/* TEAM SECTION */
+.team-sec{background:var(--off);padding:100px 48px}
+.team-in{max-width:1140px;margin:0 auto}
+.team-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:var(--navy);margin-bottom:14px}
+.team-sub{font-size:17px;color:var(--muted-l);max-width:540px;line-height:1.7;margin-bottom:56px}
+.emp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.emp-card{background:var(--wh);border:1px solid var(--brd-l);border-radius:20px;padding:28px 24px;transition:all .25s;display:flex;flex-direction:column;gap:16px}
+.emp-card:hover{border-color:rgba(0,201,167,.32);box-shadow:0 8px 32px rgba(0,0,0,.09);transform:translateY(-3px)}
+.emp-top{display:flex;align-items:center;gap:14px}
+.emp-av{width:56px;height:56px;border-radius:50 per cent;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;position:relative}
+.emp-online{position:absolute;bottom:1px;right:1px;width:14px;height:14px;background:#4ade80;border-radius:50 per cent;border:2px solid #fff}
+.emp-info h3{font-size:17px;font-weight:800;color:var(--navy);letter-spacing:-.3px}
+.emp-role{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--teal-d);margin-top:2px}
+.emp-bio{font-size:13.5px;color:var(--muted-l);line-height:1.65}
+.emp-live{display:flex;align-items:center;gap:8px;font-size:12px;color:#64748b;font-weight:500;padding:8px 12px;background:var(--off);border-radius:8px;border:1px solid #f1f5f9}
+.live-dot{width:6px;height:6px;background:#4ade80;border-radius:50 per cent;flex-shrink:0;box-shadow:0 0 6px rgba(74,222,128,.6);animation:bl 2s ease-in-out infinite}
+@keyframes bl{0 per cent,100 per cent{opacity:1}50 per cent{opacity:.35}}
+.emp-tag{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700}
 
-/* BENTO AGENTS */
-.bento-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.avery-card{grid-column:span 2;grid-row:span 2;background:var(--navy);border-radius:20px;padding:36px 32px;position:relative;overflow:hidden}
-.avery-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,201,167,.08),rgba(123,97,255,.06));pointer-events:none}
-.avery-glow{position:absolute;width:300px;height:300px;background:radial-gradient(circle,rgba(0,201,167,.15),transparent);right:-60px;bottom:-60px;filter:blur(40px);pointer-events:none}
-.avery-card h3{font-size:28px;font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:-.5px;position:relative;z-index:1}
-.avery-card .a-role{color:rgba(255,255,255,.55);position:relative;z-index:1}
-.avery-card p{color:rgba(255,255,255,.7);font-size:15.5px;line-height:1.7;position:relative;z-index:1}
-.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px;position:relative;z-index:1}
-.metric{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px 16px}
-.metric strong{display:block;font-size:24px;font-weight:900;letter-spacing:-1px;color:var(--teal);line-height:1}
-.metric span{font-size:11px;color:rgba(255,255,255,.45);margin-top:3px;display:block}
-.bento-card{background:#fff;border-radius:18px;padding:28px 24px;border:1px solid var(--g200);box-shadow:var(--sh);transition:all .25s}
-.bento-card:hover{border-color:rgba(0,201,167,.3);box-shadow:0 8px 32px rgba(0,0,0,.1);transform:translateY(-3px)}
-.a-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px}
-.i-tl{background:var(--teal-m);border:1px solid rgba(0,201,167,.2)}
-.i-bl{background:#eff6ff;border:1px solid rgba(59,130,246,.2)}
-.i-gr{background:#f0fdf4;border:1px solid rgba(34,197,94,.2)}
-.i-am{background:#fffbeb;border:1px solid rgba(251,191,36,.2)}
-.i-pu{background:#faf5ff;border:1px solid rgba(123,97,255,.2)}
-.i-sl{background:var(--g100);border:1px solid var(--g200)}
-.bento-card h3{font-size:19px;font-weight:800;color:var(--navy);margin-bottom:3px}
-.a-role{font-size:11px;font-weight:700;letter-spacing:.7px;text-transform:uppercase;color:var(--teal-d);margin-bottom:12px}
-.bento-card p{font-size:13.5px;color:var(--g600);line-height:1.65}
-.b-tag{display:inline-block;margin-top:14px;font-size:11px;font-weight:700;border-radius:7px;padding:4px 10px;border:1px solid}
-.b-tag.ac{background:var(--teal-m);color:var(--teal-d);border-color:rgba(0,201,167,.2);position:relative;z-index:1;margin-top:20px}
-.b-tag.pl{background:var(--g100);color:var(--g600);border-color:var(--g200)}
-
-/* STAR AGENT */
-.star-sec{background:var(--navy);position:relative;overflow:hidden}
-.star-sec::before{content:'';position:absolute;width:800px;height:800px;background:radial-gradient(circle,rgba(0,201,167,.05),transparent 55 per cent);top:50 per cent;left:50 per cent;transform:translate(-50 per cent,-50 per cent)}
-.star-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1}
-.star-sec .s-label{color:var(--teal);opacity:.75}
-.star-sec h2{font-size:42px;font-weight:900;letter-spacing:-1.8px;line-height:1.08;color:#fff;margin-bottom:20px}
-.star-lead{font-size:16px;color:rgba(255,255,255,.58);line-height:1.72;margin-bottom:32px}
-.check-list{list-style:none;display:flex;flex-direction:column;gap:13px}
-.check-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:rgba(226,232,240,.8);line-height:1.55}
-.check-list li::before{content:'✓';width:20px;height:20px;border-radius:50 per cent;background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
-.omni-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.omni-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:13px 14px;display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:600;color:rgba(255,255,255,.6);transition:all .2s}
-.omni-chip:hover,.omni-chip.on{border-color:rgba(0,201,167,.3);background:rgba(0,201,167,.07);color:#fff}
-.ci{font-size:17px}
-.perf-panel{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:28px}
-.perf-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center}
-.perf-grid strong{display:block;font-size:34px;font-weight:900;letter-spacing:-1.5px;color:var(--teal);line-height:1}
-.perf-grid span{font-size:12px;color:rgba(255,255,255,.45);margin-top:4px;display:block}
+/* TESTIMONIALS */
+.test-sec{background:var(--wh);padding:100px 48px}
+.test-in{max-width:1140px;margin:0 auto}
+.test-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:var(--navy);margin-bottom:56px}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.test-card{background:var(--off);border:1px solid var(--brd-l);border-radius:20px;padding:32px 28px;display:flex;flex-direction:column;gap:20px;transition:all .25s}
+.test-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-2px)}
+.test-stars{font-size:14px;letter-spacing:2px;color:#f59e0b}
+.test-q{font-size:15.5px;color:#334155;line-height:1.72;font-style:italic}
+.test-a{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--brd-l)}
+.test-av{width:40px;height:40px;border-radius:50 per cent;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.test-n{font-size:13.5px;font-weight:700;color:var(--navy)}
+.test-c{font-size:12px;color:#94a3b8}
 
 /* RESULTS */
-.res-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.res-card{background:#fff;border:1px solid var(--g200);border-radius:var(--r);padding:36px 22px;text-align:center;box-shadow:var(--sh);transition:all .25s}
-.res-card:hover{border-color:rgba(0,201,167,.3);box-shadow:var(--sh-md);transform:translateY(-4px)}
-.res-num{font-size:52px;font-weight:900;letter-spacing:-2.5px;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.res-label{font-size:13.5px;color:var(--g600);line-height:1.55;font-weight:500}
+.res-sec{background:var(--dk);padding:140px 48px;clip-path:polygon(0 56px,100 per cent 0,100 per cent calc(100 per cent - 56px),0 100 per cent);margin-top:-56px}
+.res-in{max-width:1140px;margin:0 auto;text-align:center}
+.res-sec .sec-label{color:var(--teal);margin-bottom:16px;display:block}
+.res-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;color:#fff;letter-spacing:-2px;margin-bottom:72px}
+.res-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--brd-d);border-radius:20px;overflow:hidden}
+.res-item{padding:48px 28px;border-right:1px solid var(--brd-d);transition:background .3s;text-align:center}
+.res-item:last-child{border-right:none}
+.res-item:hover{background:rgba(0,201,167,.04)}
+.res-big{font-size:clamp(52px,6.5vw,80px);font-weight:900;letter-spacing:-3px;line-height:1;background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px}
+.res-lbl{font-size:14px;color:rgba(255,255,255,.45);line-height:1.55;font-weight:500}
 
 /* PRICING */
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.p-card{border:1px solid var(--g200);border-radius:18px;padding:34px 30px;position:relative;background:#fff;box-shadow:var(--sh);transition:all .25s}
-.p-card:hover{transform:translateY(-4px);box-shadow:var(--sh-lg)}
-.p-card.feat{background:var(--navy);border-color:transparent}
-.p-card.feat .p-name,.p-card.feat .p-amt strong{color:#fff}
-.p-card.feat .p-desc,.p-card.feat .p-feats li{color:rgba(255,255,255,.6)}
-.p-card.feat .p-setup{color:rgba(255,255,255,.3)}
-.p-card.feat .p-div{border-color:rgba(255,255,255,.1)}
-.p-card.feat .p-feats li::before{color:var(--teal)}
-.p-card.feat .p-feats li.no{opacity:.3}
-.feat-badge{position:absolute;top:-13px;left:50 per cent;transform:translateX(-50 per cent);background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:800;padding:5px 16px;border-radius:100px;white-space:nowrap;text-transform:uppercase;letter-spacing:.4px}
-.p-name{font-size:16px;font-weight:800;color:var(--navy);margin-bottom:6px}
-.p-desc{font-size:13.5px;color:var(--g600);margin-bottom:22px;line-height:1.55}
-.p-amt{display:flex;align-items:baseline;gap:4px;margin-bottom:6px}
-.p-amt strong{font-size:42px;font-weight:900;letter-spacing:-2px;color:var(--navy)}
-.p-amt span{font-size:14px;color:var(--g400);font-weight:500}
-.p-setup{font-size:12px;color:var(--g400);margin-bottom:26px;opacity:.7}
-.p-div{border:none;border-top:1px solid var(--g200);margin:22px 0}
-.p-feats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px}
-.p-feats li{font-size:14px;color:var(--g600);display:flex;align-items:center;gap:10px}
-.p-feats li::before{content:'✓';color:var(--teal);font-weight:900;font-size:12px;flex-shrink:0}
-.p-feats li.no{opacity:.35}
-.p-feats li.no::before{content:'–';color:var(--g400)}
-.btn-plan{width:100 per cent;padding:13px;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
-.btn-plan.solid{background:var(--teal);color:#fff;box-shadow:0 4px 14px rgba(0,201,167,.3)}
-.btn-plan.solid:hover{background:var(--teal-d);transform:translateY(-1px)}
-.btn-plan.dark{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.15)}
-.btn-plan.dark:hover{background:rgba(255,255,255,.2)}
-.btn-plan.outline{background:transparent;color:var(--navy);border:1.5px solid var(--g200)}
-.btn-plan.outline:hover{border-color:var(--navy);background:var(--g50)}
+.price-sec{background:var(--wh);padding:100px 48px;margin-top:-56px}
+.price-in{max-width:1140px;margin:0 auto}
+.price-sec h2{font-size:clamp(34px,3.8vw,52px);font-weight:900;letter-spacing:-2px;color:var(--navy);margin-bottom:14px}
+.price-lsub{font-size:17px;color:var(--muted-l);margin-bottom:56px;max-width:500px;line-height:1.7}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pc{border:1px solid var(--brd-l);border-radius:20px;padding:36px 30px;background:var(--wh);transition:all .25s;position:relative}
+.pc:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.1)}
+.pc.feat{background:var(--navy);border-color:transparent;color:#fff}
+.pc.feat .pn,.pc.feat .pp strong{color:#fff}
+.pc.feat .pd,.pc.feat .pfi{color:rgba(255,255,255,.55)}
+.pc.feat .psu{color:rgba(255,255,255,.3)}
+.pc.feat .psep{border-color:rgba(255,255,255,.1)}
+.pc.feat .pfi::before{color:var(--teal)}
+.pc.feat .pfi.no{opacity:.3}
+.p-bdg{position:absolute;top:-13px;left:50 per cent;transform:translateX(-50 per cent);background:linear-gradient(135deg,var(--teal),var(--purple));color:#fff;font-size:11px;font-weight:800;padding:5px 16px;border-radius:100px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+.pn{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.pd{font-size:13.5px;color:#64748b;margin-bottom:22px;line-height:1.55}
+.pp{display:flex;align-items:baseline;gap:3px;margin-bottom:6px}
+.pp strong{font-size:42px;font-weight:900;letter-spacing:-2px;color:var(--navy)}
+.pp span{font-size:14px;color:#94a3b8}
+.psu{font-size:12px;color:#94a3b8;margin-bottom:28px;opacity:.7}
+.psep{border:none;border-top:1px solid var(--brd-l);margin:22px 0}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:28px}
+.pfi{font-size:14px;color:#475569;display:flex;align-items:center;gap:9px}
+.pfi::before{content:'✓';color:var(--teal);font-weight:800;font-size:12px;flex-shrink:0}
+.pfi.no::before{content:'–';color:#94a3b8}
+.pfi.no{opacity:.35}
+.pbtn{width:100 per cent;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.pbtn.tl{background:var(--teal);color:#030d1a;box-shadow:0 4px 16px rgba(0,201,167,.3)}
+.pbtn.tl:hover{background:var(--teal-d);transform:translateY(-1px)}
+.pbtn.gh{background:transparent;color:var(--navy);border:1.5px solid var(--brd-l)}
+.pbtn.gh:hover{border-color:var(--navy)}
+.pbtn.gw{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.15)}
+.pbtn.gw:hover{background:rgba(255,255,255,.18)}
 
 /* TRUST */
-.trust-strip{background:var(--navy);padding:22px 0}
-.trust-in{display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
-.t-item{display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.42);font-size:12.5px;font-weight:600;padding:8px 22px;transition:color .2s}
-.t-item:hover{color:var(--teal)}
-.t-sep{width:1px;height:18px;background:rgba(255,255,255,.1)}
+.trust-strip{background:#060f1e;border-top:1px solid rgba(255,255,255,.06);padding:20px 0}
+.trust-in{max-width:1140px;margin:0 auto;padding:0 48px;display:flex;align-items:center;justify-content:center;flex-wrap:wrap}
+.ti2{color:rgba(255,255,255,.38);font-size:12.5px;font-weight:600;padding:8px 24px;transition:color .2s;display:flex;align-items:center;gap:7px}
+.ti2:hover{color:var(--teal)}
+.tsep{width:1px;height:18px;background:rgba(255,255,255,.1)}
 
-/* FORM */
-.form-sec{background:var(--g50)}
-.form-wrap{max-width:680px;margin:0 auto}
-.form-card{background:#fff;border-radius:20px;border:1px solid var(--g200);padding:44px 40px;box-shadow:var(--sh-lg)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:13px;font-weight:600;color:var(--g800)}
-.field input,.field select{border:1.5px solid var(--g200);border-radius:9px;padding:12px 14px;font-size:14px;font-family:inherit;background:var(--g50);color:var(--navy);transition:all .2s;outline:none;-webkit-appearance:none}
-.field input:focus,.field select:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(0,201,167,.1)}
-.field input::placeholder{color:var(--g400)}
-.btn-submit{width:100 per cent;margin-top:22px;background:var(--navy);color:#fff;padding:15px;border-radius:10px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all .2s}
-.btn-submit:hover{background:var(--navy2);transform:translateY(-1px);box-shadow:var(--sh-md)}
-.form-note{text-align:center;font-size:12px;color:var(--g400);margin-top:12px}
+/* CTA BANNER */
+.cta-ban{background:linear-gradient(135deg,#030d1a,#0a1628);padding:120px 48px;text-align:center;position:relative;overflow:hidden}
+.cta-ban::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,201,167,.07),transparent 60 per cent);pointer-events:none}
+.cta-ban h2{font-size:clamp(34px,5vw,64px);font-weight:900;letter-spacing:-2.5px;margin-bottom:20px;line-height:1.04;position:relative;z-index:1}
+.cta-ban h2 .gr{background:linear-gradient(135deg,var(--teal),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-ban p{font-size:18px;color:rgba(255,255,255,.52);max-width:520px;margin:0 auto 40px;line-height:1.65;position:relative;z-index:1}
+.cta-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.cta-form input{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:14px 20px;font-size:15px;color:#fff;font-family:inherit;outline:none;width:280px;transition:all .2s}
+.cta-form input::placeholder{color:rgba(255,255,255,.3)}
+.cta-form input:focus{border-color:var(--teal);background:rgba(0,201,167,.06)}
+.cta-form button{background:var(--teal);color:#030d1a;padding:14px 28px;border-radius:10px;font-size:15px;font-weight:800;border:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.cta-form button:hover{background:var(--teal-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,201,167,.4)}
 
 /* FOOTER */
-footer{background:var(--navy);padding:56px 0 28px}
-.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:56px;margin-bottom:44px}
-.f-logo{color:#fff;font-size:20px;font-weight:900;display:block;margin-bottom:14px;text-decoration:none;letter-spacing:-.4px}
-.f-logo span{color:var(--teal)}
-.foot-brand p{font-size:14px;line-height:1.68;color:rgba(255,255,255,.42);max-width:280px}
-footer h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:14px}
+footer{background:#030d1a;border-top:1px solid rgba(255,255,255,.07);padding:64px 48px 28px}
+.foot-in{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:64px;margin-bottom:48px}
+.fl{color:#fff;font-size:19px;font-weight:900;display:block;text-decoration:none;letter-spacing:-.4px;margin-bottom:14px}
+.fl span{color:var(--teal)}
+.foot-brand p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.7;max-width:280px}
+footer h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:16px}
 footer ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-footer ul li a{text-decoration:none;color:rgba(255,255,255,.42);font-size:13.5px;transition:color .2s}
+footer ul li a{color:rgba(255,255,255,.42);font-size:13.5px;text-decoration:none;transition:color .2s}
 footer ul li a:hover{color:var(--teal)}
-.foot-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.32)}
-.f-badges{display:flex;gap:8px}
-.f-badge{border:1px solid rgba(255,255,255,.14);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:rgba(255,255,255,.38)}
+.foot-bot{max-width:1140px;margin:0 auto;border-top:1px solid rgba(255,255,255,.07);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.3)}
+.f-bgs{display:flex;gap:8px}
+.fb{border:1px solid rgba(255,255,255,.13);border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;color:rgba(255,255,255,.38)}
 
 /* TOAST */
 .toast{position:fixed;bottom:28px;left:50 per cent;transform:translateX(-50 per cent) translateY(60px);background:var(--navy);border:1px solid rgba(0,201,167,.3);border-radius:10px;padding:12px 22px;font-size:14px;font-weight:600;color:#fff;z-index:10000;transition:all .3s;opacity:0;white-space:nowrap}
 .toast.show{transform:translateX(-50 per cent) translateY(0);opacity:1}
 
+/* FADE-UP */
+.fu{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+.fu.vis{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
 @media(max-width:960px){
-  .hero-grid,.star-grid,.foot-grid{grid-template-columns:1fr;gap:48px}
-  .bento-grid,.pricing-grid{grid-template-columns:1fr}
-  .avery-card{grid-column:span 1;grid-row:span 1}
+  .avery-in,.foot-in{grid-template-columns:1fr;gap:48px}
+  .emp-grid,.test-grid,.p-grid{grid-template-columns:1fr}
   .res-grid{grid-template-columns:1fr 1fr}
-  .how-grid{grid-template-columns:1fr}
-  .hero h1,.s-title,.star-sec h2{font-size:34px;letter-spacing:-1.2px}
-  .container{padding:0 20px}
-  .section{padding:72px 0}
-  .form-row{grid-template-columns:1fr}
-  .form-card{padding:32px 22px}
-  .stat-sep,.t-sep{display:none}
-  .nav-links{display:none}
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero,.prob-sec,.avery-sec,.team-sec,.test-sec,.res-sec,.price-sec,.cta-ban,footer{padding-left:20px;padding-right:20px}
+  .trust-in{padding:0 20px}.tsep{display:none}
+  .avery-sec{clip-path:none;margin-top:0;padding-top:80px}
+  .res-sec{clip-path:none;margin-top:0;padding-top:80px;padding-bottom:80px}
 }
 @media(max-width:600px){
-  .res-grid{grid-template-columns:1fr 1fr}
+  .res-grid{grid-template-columns:1fr}.hero-ctas{flex-direction:column;align-items:center}
+  .cta-form{flex-direction:column;align-items:center}.cta-form input{width:100 per cent;max-width:320px}
 }
 </style>
 </head>
 <body>
 
-<div id="spotlight"></div>
+<div id="sp"></div>
 <div class="toast" id="toast"></div>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-in">
-    <a href="/" class="logo">
-      <svg width="30" height="30" viewBox="0 0 34 34" fill="none">
-        <rect width="34" height="34" rx="9" fill="#0f172a"/>
-        <path d="M17 6L5 16H8V28H15V21H19V28H26V16H29L17 6Z" fill="#00c9a7"/>
-        <circle cx="17" cy="6" r="2.5" fill="#fff"/>
-      </svg>
-      <span class="logo-w">Haven<span>IQ</span></span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#agents">AI Agents</a></li>
-      <li><a href="#how">How It Works</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <div class="lang-toggle">
-        <button class="lang-opt active" id="btnEN" onclick="setLang('EN')">EN</button>
-        <button class="lang-opt" id="btnFR" onclick="setLang('FR')">FR</button>
-      </div>
-      <a href="#contact" class="btn-cta" data-en="Book a Demo →" data-fr="Réserver →">Book a Demo →</a>
+<nav id="nav">
+  <a href="/" class="logo">
+    <svg width="28" height="28" viewBox="0 0 34 34" fill="none">
+      <rect width="34" height="34" rx="9" fill="#071224"/>
+      <path d="M17 6L5 16H8V28H15V21H19V28H26V16H29L17 6Z" fill="#00c9a7"/>
+      <circle cx="17" cy="6" r="2.5" fill="#fff"/>
+    </svg>
+    <span class="logo-w">Haven<span>IQ</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#agents">Agents</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+  </ul>
+  <div class="nav-r">
+    <div class="lang-toggle">
+      <button class="lo on" id="bEN" onclick="setLang('EN')">EN</button>
+      <button class="lo" id="bFR" onclick="setLang('FR')">FR</button>
     </div>
+    <a href="#contact" class="btn-demo">Book a Demo →</a>
   </div>
 </nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-badge" data-en="Now live in Canada 🇨🇦" data-fr="Disponible au Canada 🇨🇦">Now live in Canada 🇨🇦</div>
+  <h1 data-en="Your real estate website<br>just hired <span class='gr'>six people.</span>" data-fr="Votre site immobilier<br>vient d'embaucher <span class='gr'>six personnes.</span>">Your real estate website<br>just hired <span class="gr">six people.</span></h1>
+  <p class="hero-sub" data-en="They work 24/7. They answer every lead in 60 seconds. They never call in sick. HavenIQ, AI employees built for Canadian real estate." data-fr="Ils travaillent 24h/24. Ils répondent à chaque demande en 60 secondes. HavenIQ, employés IA pour l'immobilier canadien.">They work 24/7. They answer every lead in 60 seconds. They never call in sick. HavenIQ, AI employees built for Canadian real estate.</p>
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-p" data-en="Start Free Trial" data-fr="Essai Gratuit">Start Free Trial</a>
+    <a href="#agents" class="btn-s" data-en="Meet the team →" data-fr="Rencontrer l'équipe →">Meet the team →</a>
+  </div>
+  <div class="phone-outer">
+    <div class="phone">
+      <div class="p-notch"></div>
+      <div class="p-screen">
+        <div class="p-hdr">
+          <div class="p-av">🤖</div>
+          <div><h4>Avery, Sales AI</h4><p>HavenIQ · haveniq.ca</p></div>
+          <div class="p-dot"></div>
+        </div>
+        <div class="p-body" id="cb">
+          <div class="mb"><div class="bb">Hi! I'm Avery 👋 Saw you looking at the 2-bed on King St W. Rent or buy?</div><div class="mt">10:47 p.m. ✓✓</div></div>
+          <div class="mu"><div class="bb">Rent, under $2,600/mo please</div><div class="mt">10:48 p.m.</div></div>
+          <div class="mb"><div class="bb">Perfect! I have 3 units that match. Thursday 11 a.m. or Saturday 10 a.m. for a viewing?</div><div class="mt">10:48 p.m. ✓✓</div></div>
+          <div class="typ" id="typing"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- TICKER -->
 <div class="ticker">
@@ -313,48 +317,45 @@ footer ul li a:hover{color:var(--teal)}
   </div>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-dots"></div>
-  <div class="hero-blob1"></div>
-  <div class="hero-blob2"></div>
-  <div class="container hero-in">
-    <div class="hero-grid">
-      <div class="fade-up">
-        <div class="hero-badge" data-en="Now live in Canada 🇨🇦" data-fr="Disponible au Canada 🇨🇦">Now live in Canada 🇨🇦</div>
-        <h1 data-en="Your real estate website just got a <span class='g-text'>full-time AI team</span>" data-fr="Votre site immobilier vient d'obtenir une <span class='g-text'>équipe IA permanente</span>">Your real estate website just got a <span class="g-text">full-time AI team</span></h1>
-        <p class="hero-sub" data-en="HavenIQ deploys six AI employees into your brokerage, answering every inquiry in under 60 seconds, chasing rent, coordinating repairs and <strong>never taking a day off.</strong>" data-fr="HavenIQ déploie six employés IA dans votre agence, répondant en moins de 60 secondes et <strong>sans jamais prendre de congé.</strong>">HavenIQ deploys six AI employees into your brokerage, answering every inquiry in under 60 seconds, chasing rent, coordinating repairs and <strong>never taking a day off.</strong></p>
-        <div class="hero-ctas">
-          <a href="#contact" class="btn-primary" data-en="Start 14-Day Free Trial" data-fr="Essai Gratuit 14 Jours">Start 14-Day Free Trial</a>
-          <a href="#agents" class="btn-outline" data-en="Meet the team →" data-fr="Rencontrer l'équipe →">Meet the team →</a>
-        </div>
-        <div class="hero-trust">
-          <span>✓ No credit card</span>
-          <span>·</span>
-          <span>✓ Live in 24 hours</span>
-          <span>·</span>
-          <span>✓ PIPEDA compliant</span>
-        </div>
-      </div>
-      <div class="fade-up" style="transition-delay:.2s">
-        <div class="chat-card">
-          <div class="chat-hdr">
-            <div class="chat-av">🤖</div>
-            <div><h4>Avery, Sales AI</h4><p>HavenIQ · haveniq.ca</p></div>
-            <div class="online"></div>
+<!-- THE PROBLEM -->
+<section class="prob-sec">
+  <div class="prob-ov">The problem</div>
+  <div class="prob-num">15<span style="font-size:50 per cent;letter-spacing:-2px;vertical-align:super;opacity:.6">+</span></div>
+  <div class="prob-unit">hours</div>
+  <p class="prob-sub">That's how long the average real estate agent takes to respond to a new web lead. <em>By then, they've already signed with someone else.</em> HavenIQ makes sure you're always first.</p>
+</section>
+
+<!-- AVERY -->
+<section class="avery-sec">
+  <div class="avery-in">
+    <div class="fu">
+      <div class="sec-label">⭐ Meet Avery</div>
+      <h2>Your AI Sales agent.<br><span>Answers in 60 seconds.</span></h2>
+      <p class="avery-desc">Avery captures every lead the moment it arrives, from your website, Realtor.ca, Rentals.ca or Zumper. She qualifies, nurtures and books showings automatically, day or night, in English or French.</p>
+      <ul class="feat-list">
+        <li>Responds to every inbound lead in under 60 seconds</li>
+        <li>Qualifies: budget, bedrooms, area, timeline</li>
+        <li>Books viewings directly into your calendar</li>
+        <li>Multi-stage follow-up via SMS, email and web chat</li>
+        <li>Fully bilingual, switches between EN and FR seamlessly</li>
+        <li>Syncs to Yardi, AppFolio, Buildium and Salesforce</li>
+      </ul>
+    </div>
+    <div class="phone-outer phone-light fu" style="transition-delay:.2s;display:flex;justify-content:center">
+      <div class="phone" style="width:250px">
+        <div class="p-notch"></div>
+        <div class="p-screen">
+          <div class="p-hdr" style="background:#0f172a">
+            <div class="p-av">🤖</div>
+            <div><h4>Avery</h4><p>Sales AI · Online now</p></div>
+            <div class="p-dot"></div>
           </div>
-          <div class="chat-body" id="chatBody">
-            <div class="msg bot"><div class="bubble">Hi! I'm Avery 👋 Saw you looking at the 2-bed on King St W. Rent or buy?</div><div class="msg-t">10:47 p.m. ✓✓</div></div>
-            <div class="msg user"><div class="bubble">Rent, under $2,600/mo in the area</div><div class="msg-t">10:48 p.m. ✓✓</div></div>
-            <div class="msg bot"><div class="bubble">I have 3 perfect matches! Thursday 11 a.m. or Saturday 10 a.m. for a viewing?</div><div class="msg-t">10:48 p.m. ✓✓</div></div>
-            <div class="typing" id="typing"><span></span><span></span><span></span></div>
-          </div>
-          <div class="channels">
-            <div class="ch-pill on">📱 SMS</div>
-            <div class="ch-pill on">📧 Email</div>
-            <div class="ch-pill">💬 Messenger</div>
-            <div class="ch-pill">🌐 Web Chat</div>
-            <div class="ch-pill">📞 Voice</div>
+          <div class="p-body" style="min-height:260px">
+            <div class="mb"><div class="bb">Hi Sarah! It's Avery from HavenIQ 👋 You enquired about the listing on Spadina. Still looking?</div><div class="mt">Sat 11:02 p.m. ✓✓</div></div>
+            <div class="mu"><div class="bb">Yes! Looking for 2-bed around $2,400</div><div class="mt">Sat 11:03 p.m.</div></div>
+            <div class="mb"><div class="bb">I have 2 units that fit perfectly. Sunday at 2 p.m. or Monday at 10 a.m.? I can book it now.</div><div class="mt">Sat 11:03 p.m. ✓✓</div></div>
+            <div class="mu"><div class="bb">Sunday 2 p.m. works!</div><div class="mt">Sat 11:04 p.m.</div></div>
+            <div class="mb"><div class="bb">✅ Booked! I'll send you the address. See you Sunday at 2 p.m.!</div><div class="mt">Sat 11:04 p.m. ✓✓</div></div>
           </div>
         </div>
       </div>
@@ -362,98 +363,106 @@ footer ul li a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-sec">
-  <div class="container">
-    <div class="stats-in">
-      <div class="stat fade-up"><strong><em data-count="104" data-suf="K+">0K+</em></strong><span>real estate businesses in Canada</span></div>
-      <div class="stat-sep"></div>
-      <div class="stat fade-up"><strong><em data-count="48" data-suf="per cent">0 per cent</em></strong><span>of agents never follow up on leads</span></div>
-      <div class="stat-sep"></div>
-      <div class="stat fade-up"><strong>&lt;60<em style="font-size:22px;letter-spacing:0">s</em></strong><span>Avery's guaranteed first response</span></div>
-      <div class="stat-sep"></div>
-      <div class="stat fade-up"><strong>24<em style="font-size:22px;letter-spacing:0">/7</em></strong><span>always-on, no overtime</span></div>
-    </div>
-  </div>
-</div>
+<!-- TEAM -->
+<section class="team-sec" id="agents">
+  <div class="team-in">
+    <div class="sec-label" style="color:var(--teal-d)">Your AI employees</div>
+    <h2 class="fu" style="color:var(--navy)">Six specialists. One subscription.</h2>
+    <p class="team-sub fu">Each agent has a defined role, a distinct skill set and is available 24 hours a day, 365 days a year.</p>
+    <div class="emp-grid">
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how">
-  <div class="container">
-    <div class="s-label">Simple by design</div>
-    <h2 class="s-title fade-up">Connected in <span class="g-text">3 steps</span></h2>
-    <p class="s-sub fade-up">No migrations. No replacing your stack. HavenIQ wraps around what you already use and delivers results from day one.</p>
-    <div class="how-grid fade-up">
-      <div class="how-card"><div class="how-num">1</div><div class="how-icon">🔌</div><h3>Connect your website</h3><p>Paste one line of code into your site. Avery appears as a live chat widget instantly. Or connect your contact form via webhook, no developer required.</p></div>
-      <div class="how-card"><div class="how-num">2</div><div class="how-icon">⚙️</div><h3>Configure your agents</h3><p>A 15-minute onboarding call. We set up each agent with your provincial regulations and connect to your CRM, Yardi, AppFolio, Buildium or Salesforce.</p></div>
-      <div class="how-card"><div class="how-num">3</div><div class="how-icon">🚀</div><h3>Watch leads convert</h3><p>Every inquiry gets an instant intelligent response. A live dashboard shows every conversation, qualified lead and booked showing in real time.</p></div>
+      <div class="emp-card fu">
+        <div class="emp-top">
+          <div class="emp-av" style="background:linear-gradient(135deg,#e0faf5,#b2f5e8)">🏡<div class="emp-online"></div></div>
+          <div class="emp-info"><h3>Avery</h3><div class="emp-role">Sales AI</div></div>
+        </div>
+        <p class="emp-bio">Captures and qualifies inbound leads from every portal and your website. Books showings and runs follow-up sequences automatically.</p>
+        <div class="emp-live"><div class="live-dot"></div>Currently handling 4 new leads</div>
+        <span class="emp-tag" style="background:#e0faf5;color:#00a888;border:1px solid rgba(0,201,167,.2)">⭐ Star Agent</span>
+      </div>
+
+      <div class="emp-card fu" style="transition-delay:.07s">
+        <div class="emp-top">
+          <div class="emp-av" style="background:linear-gradient(135deg,#eff6ff,#bfdbfe)">💸<div class="emp-online"></div></div>
+          <div class="emp-info"><h3>Morgan</h3><div class="emp-role">Treasury AI</div></div>
+        </div>
+        <p class="emp-bio">Automates owner disbursements, strata fees and management fee reconciliation via Canadian EFT rails.</p>
+        <div class="emp-live"><div class="live-dot"></div>Processing 2 disbursements</div>
+        <span class="emp-tag" style="background:#eff6ff;color:#3b82f6;border:1px solid rgba(59,130,246,.2)">Finance</span>
+      </div>
+
+      <div class="emp-card fu" style="transition-delay:.12s">
+        <div class="emp-top">
+          <div class="emp-av" style="background:linear-gradient(135deg,#f0fdf4,#bbf7d0)">🎧<div class="emp-online"></div></div>
+          <div class="emp-info"><h3>Riley</h3><div class="emp-role">Tenant Services AI</div></div>
+        </div>
+        <p class="emp-bio">Handles tenant and owner inquiries 24/7. Resolves 68 per cent of tickets without any human escalation, in English or French.</p>
+        <div class="emp-live"><div class="live-dot"></div>Answered 17 queries today</div>
+        <span class="emp-tag" style="background:#f0fdf4;color:#16a34a;border:1px solid rgba(34,197,94,.2)">Support</span>
+      </div>
+
+      <div class="emp-card fu" style="transition-delay:.05s">
+        <div class="emp-top">
+          <div class="emp-av" style="background:linear-gradient(135deg,#fffbeb,#fde68a)">🔧<div class="emp-online"></div></div>
+          <div class="emp-info"><h3>Owen</h3><div class="emp-role">Maintenance AI</div></div>
+        </div>
+        <p class="emp-bio">Triages repair requests, dispatches verified contractors across Canadian provinces and tracks every work order to completion.</p>
+        <div class="emp-live"><div class="live-dot"></div>3 work orders in progress</div>
+        <span class="emp-tag" style="background:#fffbeb;color:#d97706;border:1px solid rgba(251,191,36,.2)">Operations</span>
+      </div>
+
+      <div class="emp-card fu" style="transition-delay:.1s">
+        <div class="emp-top">
+          <div class="emp-av" style="background:linear-gradient(135deg,#faf5ff,#e9d5ff)">📋<div class="emp-online"></div></div>
+          <div class="emp-info"><h3>Harper</h3><div class="emp-role">Collections AI</div></div>
+        </div>
+        <p class="emp-bio">Sends bilingual EN/FR payment reminders via SMS and email, fully compliant with RTA Ontario, TRAC BC and RTRA Alberta.</p>
+        <div class="emp-live"><div class="live-dot"></div>5 reminders sent today</div>
+        <span class="emp-tag" style="background:#faf5ff;color:#7c3aed;border:1px solid rgba(123,97,255,.2)">Collections</span>
+      </div>
+
+      <div class="emp-card fu" style="transition-delay:.15s">
+        <div class="emp-top">
+          <div class="emp-av" style="background:linear-gradient(135deg,#f8fafc,#e2e8f0)">📊<div class="emp-online"></div></div>
+          <div class="emp-info"><h3>Logan</h3><div class="emp-role">Data Intelligence AI</div></div>
+        </div>
+        <p class="emp-bio">Delivers real-time dashboards on portfolio performance, vacancy rates and lead conversion. Weekly reports every Monday morning.</p>
+        <div class="emp-live"><div class="live-dot"></div>Monday report ready</div>
+        <span class="emp-tag" style="background:#f8fafc;color:#475569;border:1px solid #e2e8f0">Analytics</span>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- AGENTS -->
-<section class="section" id="agents" style="background:var(--g50)">
-  <div class="container">
-    <div class="s-label">The AI team</div>
-    <h2 class="s-title fade-up">One subscription. <span class="g-text">Six AI employees.</span></h2>
-    <p class="s-sub fade-up">Each agent has a defined role and operates across the channels Canadians actually use.</p>
-    <div class="bento-grid">
-      <div class="avery-card fade-up">
-        <div class="avery-glow"></div>
-        <div class="a-icon i-tl" style="position:relative;z-index:1">🏡</div>
-        <h3>Avery</h3>
-        <div class="a-role">Sales AI, Star Agent ⭐</div>
-        <p>Captures leads from your website, Realtor.ca, Rentals.ca and Zumper. Qualifies prospects, books showings and runs automated follow-up, responding in under 60 seconds, any time.</p>
-        <div class="metric-grid">
-          <div class="metric"><strong>3×</strong><span>More showings booked</span></div>
-          <div class="metric"><strong>&lt;60s</strong><span>First response</span></div>
-          <div class="metric"><strong>∞</strong><span>Simultaneous leads</span></div>
-          <div class="metric"><strong>EN/FR</strong><span>Bilingual</span></div>
+<!-- TESTIMONIALS -->
+<section class="test-sec">
+  <div class="test-in">
+    <div class="sec-label" style="color:var(--teal-d)">What clients say</div>
+    <h2 class="fu" style="color:var(--navy)">Real results from<br>Canadian agencies.</h2>
+    <div class="test-grid">
+      <div class="test-card fu">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-q">"Before HavenIQ, weekend leads waited until Monday. Last Saturday, Avery booked 3 viewings while I was at my daughter's soccer game. The ROI was obvious by day two."</p>
+        <div class="test-a">
+          <div class="test-av" style="background:#e0faf5">👩</div>
+          <div><div class="test-n">Sarah Chen</div><div class="test-c">Owner, Maple Property Group · Toronto</div></div>
         </div>
-        <span class="b-tag ac">⭐ Start Here</span>
       </div>
-      <div class="bento-card fade-up" style="transition-delay:.07s"><div class="a-icon i-bl">💸</div><h3>Morgan</h3><div class="a-role">Treasury AI</div><p>Automates owner disbursements and management fee reconciliation via Canadian EFT rails. Integrates with Yardi, AppFolio and Buildium.</p><span class="b-tag pl">Finance</span></div>
-      <div class="bento-card fade-up" style="transition-delay:.12s"><div class="a-icon i-gr">🎧</div><h3>Riley</h3><div class="a-role">Tenant Services AI</div><p>Handles tenant inquiries 24/7, lease renewals, noise complaints, move-in checklists. Resolves 68 per cent of tickets without escalation, in EN or FR.</p><span class="b-tag pl">Support</span></div>
-      <div class="bento-card fade-up" style="transition-delay:.05s"><div class="a-icon i-am">🔧</div><h3>Owen</h3><div class="a-role">Maintenance AI</div><p>Triages repairs, dispatches verified contractors across Canadian provinces and tracks work orders from first report to final sign-off.</p><span class="b-tag pl">Operations</span></div>
-      <div class="bento-card fade-up" style="transition-delay:.1s"><div class="a-icon i-pu">📋</div><h3>Harper</h3><div class="a-role">Collections AI</div><p>Bilingual payment reminders via SMS and email. Fully compliant with RTA Ontario, TRAC BC and RTRA Alberta.</p><span class="b-tag pl">Collections</span></div>
-      <div class="bento-card fade-up" style="transition-delay:.15s"><div class="a-icon i-sl">📊</div><h3>Logan</h3><div class="a-role">Data Intelligence AI</div><p>Real-time dashboards on portfolio performance, vacancy rates and lead conversion. Weekly reports every Monday morning.</p><span class="b-tag pl">Analytics</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- STAR AGENT -->
-<section class="section star-sec">
-  <div class="container">
-    <div class="star-grid">
-      <div class="fade-up">
-        <div class="s-label">⭐ Star Agent</div>
-        <h2>The agent that pays for itself on day one</h2>
-        <p class="star-lead">48 per cent of Canadian agents never follow up on a lead at all. Avery responds to every inquiry in under 60 seconds, whether it's a Realtor.ca submission at 11 p.m. or a Sunday morning inquiry. She profiles, nurtures and books so your agents walk in ready to close.</p>
-        <ul class="check-list">
-          <li>Instant response to every inbound lead, any time, under 60 seconds</li>
-          <li>Smart profiling: budget, timeline, bedrooms, neighbourhood</li>
-          <li>Automated showing scheduler synced to your calendar</li>
-          <li>Multi-stage follow-up over SMS, email and web chat</li>
-          <li>Fully bilingual, switches seamlessly between English and French</li>
-          <li>Syncs directly with your CRM from the very first conversation</li>
-        </ul>
-      </div>
-      <div class="fade-up" style="transition-delay:.15s">
-        <div class="omni-grid">
-          <div class="omni-chip on"><span class="ci">📱</span> SMS / iMessage</div>
-          <div class="omni-chip on"><span class="ci">📧</span> Email</div>
-          <div class="omni-chip"><span class="ci">💬</span> Messenger</div>
-          <div class="omni-chip"><span class="ci">🌐</span> Web Chat</div>
-          <div class="omni-chip"><span class="ci">📞</span> Voice Calls</div>
-          <div class="omni-chip"><span class="ci">🔗</span> Portal APIs</div>
+      <div class="test-card fu" style="transition-delay:.1s">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-q">"We went from responding to 60 per cent of our leads to 100 per cent of them. Avery is faster than any of us ever could be. Our conversion rate went up 40 per cent in the first month."</p>
+        <div class="test-a">
+          <div class="test-av" style="background:#eff6ff">👨</div>
+          <div><div class="test-n">James Carvalho</div><div class="test-c">Broker, Pacific Realty Group · Vancouver</div></div>
         </div>
-        <div class="perf-panel">
-          <div class="perf-grid">
-            <div><strong>3×</strong><span>More showings booked</span></div>
-            <div><strong>&lt;60s</strong><span>First response time</span></div>
-            <div><strong>∞</strong><span>Simultaneous leads</span></div>
-            <div><strong>EN/FR</strong><span>Bilingual by default</span></div>
-          </div>
+      </div>
+      <div class="test-card fu" style="transition-delay:.2s">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-q">"Harper recovered over $14,000 in late rent payments in our first month alone. I honestly don't know how we managed collections manually before this."</p>
+        <div class="test-a">
+          <div class="test-av" style="background:#faf5ff">👩</div>
+          <div><div class="test-n">Stéphanie Leblanc</div><div class="test-c">Director, Montréal Locatif · Montréal</div></div>
         </div>
       </div>
     </div>
@@ -461,180 +470,156 @@ footer ul li a:hover{color:var(--teal)}
 </section>
 
 <!-- RESULTS -->
-<section class="section" id="results">
-  <div class="container" style="text-align:center">
-    <div class="s-label">Results</div>
-    <h2 class="s-title fade-up" style="margin:0 auto 14px;max-width:500px">Numbers that <span class="g-text">actually matter</span></h2>
-    <p class="s-sub fade-up" style="margin:0 auto 56px">Faster responses, fewer revenue leaks, an operation that never clocks out.</p>
+<section class="res-sec" id="results">
+  <div class="res-in">
+    <span class="sec-label">By the numbers</span>
+    <h2 class="fu">Results that speak for themselves.</h2>
     <div class="res-grid">
-      <div class="res-card fade-up"><div class="res-num">3×</div><div class="res-label">Increase in sales conversions from faster lead response</div></div>
-      <div class="res-card fade-up" style="transition-delay:.1s"><div class="res-num">68 per cent</div><div class="res-label">Of tenant queries resolved without human escalation</div></div>
-      <div class="res-card fade-up" style="transition-delay:.2s"><div class="res-num">90 per cent+</div><div class="res-label">Reduction in first-response time for new inbound leads</div></div>
-      <div class="res-card fade-up" style="transition-delay:.3s"><div class="res-num">24/7</div><div class="res-label">Always-on coverage, no after-hours leads left behind</div></div>
+      <div class="res-item fu"><div class="res-big">3×</div><div class="res-lbl">Increase in qualified showings booked within first 30 days</div></div>
+      <div class="res-item fu" style="transition-delay:.1s"><div class="res-big"><span data-v="68" data-s="%">0 per cent</span></div><div class="res-lbl">Of tenant service tickets resolved without human escalation</div></div>
+      <div class="res-item fu" style="transition-delay:.2s"><div class="res-big">&lt;60s</div><div class="res-lbl">Average time for Avery to respond to a new inbound lead</div></div>
+      <div class="res-item fu" style="transition-delay:.3s"><div class="res-big">24/7</div><div class="res-lbl">Always-on coverage, no after-hours leads left unanswered</div></div>
     </div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section class="section" id="pricing" style="background:var(--g50)">
-  <div class="container">
-    <div class="s-label">Pricing</div>
-    <h2 class="s-title fade-up">Simple pricing. <span class="g-text">No surprises.</span></h2>
-    <p class="s-sub fade-up">Flat monthly subscription. Cancel anytime. Every plan starts with a 14-day free trial.</p>
-    <div class="pricing-grid">
-      <div class="p-card fade-up">
-        <div class="p-name">Starter</div>
-        <div class="p-desc">For independent agents and small landlords up to 25 units.</div>
-        <div class="p-amt"><strong>$249</strong><span>CAD / mo</span></div>
-        <div class="p-setup">+ $499 one-time setup</div>
-        <hr class="p-div"/>
-        <ul class="p-feats">
-          <li>Avery, Sales AI</li><li>Riley, Tenant Services AI</li>
-          <li>SMS + Email + Web Chat</li><li>Live lead dashboard</li>
-          <li>1 CRM integration</li>
-          <li class="no">Morgan, Owen, Harper, Logan</li>
-          <li class="no">EN/FR bilingual</li>
+<section class="price-sec" id="pricing">
+  <div class="price-in">
+    <div class="sec-label" style="color:var(--teal-d)">Pricing</div>
+    <h2 class="fu" style="color:var(--navy)">Simple, flat pricing.</h2>
+    <p class="price-lsub fu">No per-lead fees. No surprises. Cancel anytime. Every plan starts with a 14-day free trial.</p>
+    <div class="p-grid">
+      <div class="pc fu">
+        <div class="pn">Starter</div>
+        <div class="pd">For independent agents and small landlords up to 25 units.</div>
+        <div class="pp"><strong>$249</strong><span>CAD / mo</span></div>
+        <div class="psu">+ $499 one-time setup</div>
+        <hr class="psep"/>
+        <ul class="pfeats">
+          <li class="pfi">Avery, Sales AI</li>
+          <li class="pfi">Riley, Tenant Services AI</li>
+          <li class="pfi">SMS + Email + Web Chat</li>
+          <li class="pfi">Live lead dashboard</li>
+          <li class="pfi">1 CRM integration</li>
+          <li class="pfi no">Morgan, Owen, Harper, Logan</li>
         </ul>
-        <button class="btn-plan outline">Start Free Trial</button>
+        <button class="pbtn gh">Start Free Trial</button>
       </div>
-      <div class="p-card feat fade-up" style="transition-delay:.1s">
-        <div class="feat-badge">Most Popular</div>
-        <div class="p-name">Growth</div>
-        <div class="p-desc">For property managers and brokerages with 26–150 units.</div>
-        <div class="p-amt"><strong>$599</strong><span>CAD / mo</span></div>
-        <div class="p-setup">+ $999 one-time setup</div>
-        <hr class="p-div"/>
-        <ul class="p-feats">
-          <li>Avery, Sales AI</li><li>Riley, Tenant Services AI</li>
-          <li>Owen, Maintenance AI</li><li>Harper, Collections AI</li>
-          <li>All channels + EN/FR</li>
-          <li>Up to 3 CRM integrations</li>
-          <li>Priority onboarding</li>
+      <div class="pc feat fu" style="transition-delay:.1s">
+        <div class="p-bdg">Most Popular</div>
+        <div class="pn">Growth</div>
+        <div class="pd">For property managers and brokerages with 26–150 units.</div>
+        <div class="pp"><strong>$599</strong><span>CAD / mo</span></div>
+        <div class="psu">+ $999 one-time setup</div>
+        <hr class="psep"/>
+        <ul class="pfeats">
+          <li class="pfi">Avery, Sales AI</li>
+          <li class="pfi">Riley, Tenant Services AI</li>
+          <li class="pfi">Owen, Maintenance AI</li>
+          <li class="pfi">Harper, Collections AI</li>
+          <li class="pfi">All channels + EN/FR bilingual</li>
+          <li class="pfi">Up to 3 CRM integrations</li>
         </ul>
-        <button class="btn-plan solid">Start Free Trial</button>
+        <button class="pbtn tl">Start Free Trial</button>
       </div>
-      <div class="p-card fade-up" style="transition-delay:.2s">
-        <div class="p-name">Scale</div>
-        <div class="p-desc">Full six-agent team for property managers with 150+ units.</div>
-        <div class="p-amt"><strong>$1,299</strong><span>CAD / mo</span></div>
-        <div class="p-setup">+ $1,999 one-time setup</div>
-        <hr class="p-div"/>
-        <ul class="p-feats">
-          <li>All 6 agents, full team</li><li>All channels including Voice</li>
-          <li>EN/FR bilingual</li><li>Unlimited CRM integrations</li>
-          <li>Weekly Logan reports</li><li>Priority support + SLA</li>
-          <li>Provincial RTA compliance</li>
+      <div class="pc fu" style="transition-delay:.2s">
+        <div class="pn">Scale</div>
+        <div class="pd">Full six-agent team for property managers with 150+ units.</div>
+        <div class="pp"><strong>$1,299</strong><span>CAD / mo</span></div>
+        <div class="psu">+ $1,999 one-time setup</div>
+        <hr class="psep"/>
+        <ul class="pfeats">
+          <li class="pfi">All 6 agents, full team</li>
+          <li class="pfi">All channels including Voice</li>
+          <li class="pfi">EN/FR bilingual</li>
+          <li class="pfi">Unlimited CRM integrations</li>
+          <li class="pfi">Weekly Logan reports</li>
+          <li class="pfi">Priority support + SLA</li>
         </ul>
-        <button class="btn-plan outline">Start Free Trial</button>
+        <button class="pbtn gh">Start Free Trial</button>
       </div>
     </div>
-    <p style="text-align:center;margin-top:22px;font-size:14px;color:var(--g600)">500+ units or need white-labelling? <a href="#contact" style="color:var(--teal-d);font-weight:700;text-decoration:none">Talk to us about Enterprise →</a></p>
+    <p style="text-align:center;margin-top:22px;font-size:14px;color:#64748b">500+ units or need white-labelling? <a href="#contact" style="color:var(--teal-d);font-weight:700;text-decoration:none">Talk to us about Enterprise →</a></p>
   </div>
 </section>
 
-<!-- TRUST -->
+<!-- TRUST STRIP -->
 <div class="trust-strip">
   <div class="trust-in">
-    <div class="t-item">🔒 PIPEDA Compliant</div><div class="t-sep"></div>
-    <div class="t-item">🏦 FINTRAC Ready</div><div class="t-sep"></div>
-    <div class="t-item">⚖️ Provincial RTA Compliant</div><div class="t-sep"></div>
-    <div class="t-item">🌐 Bilingual EN / FR</div><div class="t-sep"></div>
-    <div class="t-item">🛡️ SOC 2 Type II</div><div class="t-sep"></div>
-    <div class="t-item">🇨🇦 Canadian Data Residency</div>
+    <div class="ti2">🔒 PIPEDA Compliant</div><div class="tsep"></div>
+    <div class="ti2">🏦 FINTRAC Ready</div><div class="tsep"></div>
+    <div class="ti2">⚖️ Provincial RTA Compliant</div><div class="tsep"></div>
+    <div class="ti2">🌐 Bilingual EN / FR</div><div class="tsep"></div>
+    <div class="ti2">🛡️ SOC 2 Type II</div><div class="tsep"></div>
+    <div class="ti2">🇨🇦 Canadian Data Residency</div>
   </div>
 </div>
 
-<!-- CONTACT -->
-<section class="section form-sec" id="contact">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:44px">
-      <div class="s-label">Get started</div>
-      <h2 class="s-title fade-up" style="max-width:480px;margin:0 auto 14px">Book your <span class="g-text">free 14-day trial</span></h2>
-      <p class="s-sub fade-up" style="margin:0 auto">Avery live on your website within 24 hours. No commitment, no credit card required.</p>
-    </div>
-    <div class="form-wrap fade-up">
-      <div class="form-card">
-        <div class="form-row">
-          <div class="field"><label>First Name</label><input type="text" placeholder="Jane"/></div>
-          <div class="field"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
-        </div>
-        <div class="form-row">
-          <div class="field"><label>Work Email</label><input type="email" placeholder="jane@yourcompany.ca"/></div>
-          <div class="field"><label>Phone Number</label><input type="tel" placeholder="+1 (416) 000-0000"/></div>
-        </div>
-        <div class="form-row">
-          <div class="field"><label>Province</label>
-            <select><option value="">Select province...</option><option>Ontario</option><option>British Columbia</option><option>Alberta</option><option>Quebec</option><option>Manitoba</option><option>Saskatchewan</option><option>Nova Scotia</option><option>New Brunswick</option><option>Other</option></select>
-          </div>
-          <div class="field"><label>Business Type</label>
-            <select><option value="">Select type...</option><option>Property Management Company</option><option>Real Estate Brokerage</option><option>Independent Agent</option><option>REIT / Institutional Investor</option><option>Developer / Builder</option><option>Strata / Condo Corporation</option></select>
-          </div>
-        </div>
-        <div class="field"><label>Portfolio Size</label>
-          <select><option value="">Units under management...</option><option>1 – 25 units</option><option>26 – 100 units</option><option>101 – 500 units</option><option>500+ units</option></select>
-        </div>
-        <button class="btn-submit">Get Avery Live on My Website →</button>
-        <p class="form-note">🔒 Protected under PIPEDA. Your data is never shared with third parties.</p>
-      </div>
-    </div>
-  </div>
+<!-- CTA BANNER -->
+<section class="cta-ban" id="contact">
+  <h2>Stop losing leads<br>at <span class="gr">11 p.m.</span></h2>
+  <p>Start your free 14-day trial. Avery goes live on your website within 24 hours. No credit card required.</p>
+  <form class="cta-form" onsubmit="return false">
+    <input type="email" placeholder="your@email.ca"/>
+    <button type="submit">Get Started Free →</button>
+  </form>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <span class="f-logo">Haven<span>IQ</span></span>
-        <p>AI employees for the Canadian real estate industry. Six specialized agents, one subscription, zero leads left unanswered. Built in Canada, compliant by default.</p>
-      </div>
-      <div>
-        <h4>AI Agents</h4>
-        <ul>
-          <li><a href="#agents">Avery, Sales AI</a></li>
-          <li><a href="#agents">Morgan, Treasury AI</a></li>
-          <li><a href="#agents">Riley, Tenant Services</a></li>
-          <li><a href="#agents">Owen, Maintenance AI</a></li>
-          <li><a href="#agents">Harper, Collections AI</a></li>
-          <li><a href="#agents">Logan, Data Intelligence</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About HavenIQ</a></li>
-          <li><a href="#pricing">Pricing</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
-      </div>
+  <div class="foot-in">
+    <div class="foot-brand">
+      <span class="fl">Haven<span>IQ</span></span>
+      <p>AI employees for the Canadian real estate industry. Six specialized agents, one subscription, zero leads left unanswered. Built in Canada, compliant by default.</p>
     </div>
-    <div class="foot-bot">
-      <span>© 2026 HavenIQ Inc. All rights reserved. · haveniq.ca</span>
-      <div class="f-badges"><span class="f-badge">PIPEDA</span><span class="f-badge">SOC 2</span><span class="f-badge">EN/FR</span><span class="f-badge">🇨🇦</span></div>
+    <div>
+      <h4>AI Agents</h4>
+      <ul>
+        <li><a href="#agents">Avery, Sales AI</a></li>
+        <li><a href="#agents">Morgan, Treasury AI</a></li>
+        <li><a href="#agents">Riley, Tenant Services</a></li>
+        <li><a href="#agents">Owen, Maintenance AI</a></li>
+        <li><a href="#agents">Harper, Collections AI</a></li>
+        <li><a href="#agents">Logan, Data Intelligence</a></li>
+      </ul>
     </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About HavenIQ</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <span>© 2026 HavenIQ Inc. All rights reserved. · haveniq.ca</span>
+    <div class="f-bgs"><span class="fb">PIPEDA</span><span class="fb">SOC 2</span><span class="fb">EN/FR</span><span class="fb">🇨🇦</span></div>
   </div>
 </footer>
 
 <script>
 (function(){
 
-/* SPOTLIGHT, teal glow on white bg */
-var sp = document.getElementById('spotlight');
-var mx = window.innerWidth/2, my = window.innerHeight/2;
-document.addEventListener('mousemove', function(e){ mx=e.clientX; my=e.clientY; });
-(function loop(){
-  sp.style.background = 'radial-gradient(320px circle at '+mx+'px '+my+'px,rgba(0,201,167,0.10),rgba(0,201,167,0.03) 45 per cent,transparent 68 per cent)';
-  requestAnimationFrame(loop);
-})();
+/* SPOTLIGHT, simplest reliable implementation */
+var sp = document.getElementById('sp');
+document.addEventListener('mousemove', function(e){
+  sp.style.background = 'radial-gradient(400px at '+e.clientX+'px '+e.clientY+'px, rgba(0,201,167,0.13) 0 per cent, transparent 100 per cent)';
+});
+
+/* NAV SCROLL SOLID */
+window.addEventListener('scroll', function(){
+  document.getElementById('nav').classList.toggle('solid', window.scrollY > 20);
+}, {passive:true});
 
 /* FADE-UP */
 var obs = new IntersectionObserver(function(entries){
-  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); }});
 },{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.fade-up').forEach(function(el){ obs.observe(el); });
+document.querySelectorAll('.fu').forEach(function(el){ obs.observe(el); });
 
 /* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"]').forEach(function(a){
@@ -645,65 +630,50 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
   });
 });
 
-/* COUNTER ANIMATION */
+/* COUNTER */
 var cObs = new IntersectionObserver(function(entries){
   entries.forEach(function(e){
-    if(!e.isIntersecting)return;
-    var el=e.target, val=parseInt(el.dataset.count), suf=el.dataset.suf||'';
-    var start=null;
+    if(!e.isIntersecting) return;
+    var el=e.target, v=parseInt(el.dataset.v), s=el.dataset.s||'';
+    var st=null;
     (function step(ts){
-      if(!start)start=ts;
-      var p=Math.min((ts-start)/1800,1), ea=1-Math.pow(1-p,3);
-      el.textContent=Math.floor(ea*val)+suf;
-      if(p<1)requestAnimationFrame(step); else el.textContent=val+suf;
+      if(!st)st=ts;
+      var p=Math.min((ts-st)/1800,1), ea=1-Math.pow(1-p,3);
+      el.textContent=Math.floor(ea*v)+s;
+      if(p<1)requestAnimationFrame(step); else el.textContent=v+s;
     })(performance.now());
     cObs.unobserve(el);
   });
 },{threshold:0.5});
-document.querySelectorAll('[data-count]').forEach(function(el){ cObs.observe(el); });
+document.querySelectorAll('[data-v]').forEach(function(el){ cObs.observe(el); });
 
-/* 3D TILT */
-document.querySelectorAll('.bento-card').forEach(function(card){
-  card.addEventListener('mousemove',function(e){
-    var r=card.getBoundingClientRect();
-    var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform='perspective(800px) rotateY('+(x*7)+'deg) rotateX('+(-y*7)+'deg) translateZ(4px) translateY(-3px)';
-    card.style.transition='transform .1s';
-  });
-  card.addEventListener('mouseleave',function(){
-    card.style.transform=''; card.style.transition='transform .5s ease';
-  });
-});
-
-/* CHAT */
-var typing=document.getElementById('typing'), chatBody=document.getElementById('chatBody');
-if(typing&&chatBody){
+/* CHAT ANIMATION hero phone */
+var typ=document.getElementById('typing'), cb=document.getElementById('cb');
+if(typ&&cb){
   setTimeout(function(){
-    typing.style.display='flex';
+    typ.style.display='flex';
     setTimeout(function(){
-      typing.style.display='none';
-      var m=document.createElement('div'); m.className='msg bot';
-      m.innerHTML='<div class="bubble">What\'s the best number to reach you? I\'ll send details right away.</div><div class="msg-t">10:49 p.m. ✓✓</div>';
-      chatBody.insertBefore(m,typing); chatBody.scrollTop=chatBody.scrollHeight;
+      typ.style.display='none';
+      var m=document.createElement('div'); m.className='mb';
+      m.innerHTML='<div class="bb">What\'s the best number to reach you? I\'ll send the address now.</div><div class="mt">10:49 p.m. ✓✓</div>';
+      cb.insertBefore(m,typ); cb.scrollTop=cb.scrollHeight;
     },2200);
   },3500);
 }
 
 /* LANGUAGE TOGGLE */
-var currentLang='EN', toast=document.getElementById('toast');
-function showToast(msg){
-  toast.textContent=msg; toast.classList.add('show');
-  setTimeout(function(){ toast.classList.remove('show'); },2500);
-}
-window.setLang=function(lang){
-  if(lang===currentLang)return;
-  currentLang=lang;
-  document.getElementById('btnEN').classList.toggle('active',lang==='EN');
-  document.getElementById('btnFR').classList.toggle('active',lang==='FR');
+var lang='EN', toast=document.getElementById('toast');
+window.setLang=function(l){
+  if(l===lang) return;
+  lang=l;
+  document.getElementById('bEN').classList.toggle('on',l==='EN');
+  document.getElementById('bFR').classList.toggle('on',l==='FR');
   document.querySelectorAll('[data-en][data-fr]').forEach(function(el){
-    el.innerHTML=lang==='EN'?el.dataset.en:el.dataset.fr;
+    el.innerHTML=l==='EN'?el.dataset.en:el.dataset.fr;
   });
-  showToast(lang==='FR'?'🇨🇦 Version française activée':'🇨🇦 English version active');
+  toast.textContent=l==='FR'?'🇨🇦 Version française activée':'🇨🇦 English version active';
+  toast.classList.add('show');
+  setTimeout(function(){ toast.classList.remove('show'); },2500);
 };
 
 })();
